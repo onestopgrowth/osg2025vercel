@@ -5,7 +5,6 @@ import BlankBlock from "../components/blank-block"
 import ClientLogos from "../components/client-logos"
 import Services from "../components/services"
 import Stats from "../components/stats"
-import WorkExamples from "../components/work-examples"
 import FAQ from "../components/faq"
 import Contact from "../components/contact"
 import Footer from "../components/footer"
@@ -19,7 +18,6 @@ export default function Home() {
       <BlankBlock />
       <ClientLogos />
       <Stats />
-      <WorkExamples />
       <Services />
       <FAQ />
       <Contact />

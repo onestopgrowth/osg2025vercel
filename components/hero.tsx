@@ -69,14 +69,12 @@ export default function Hero() {
           className="flex flex-col items-center cursor-pointer group mb-12"
           onClick={scrollToNextSection}
         >
-          <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium tracking-wide text-white">
-            <SparklyText color="#FF8E00" numberOfSparkles={8}>
+          <div className="text-2xl md:text-3xl tracking-wider">
+            <SparklyText color="#FF8000" numberOfParticles={4}>
               Get a clearer picture
             </SparklyText>
           </div>
-          <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}>
-            <ChevronDown className="text-white w-5 h-5 sm:w-6 sm:h-6 group-hover:text-[#FF8000] transition-colors" />
-          </motion.div>
+          <ChevronDown className="text-[#FF8000] w-6 h-6 mt-2" />
         </motion.div>
       </div>
     </section>

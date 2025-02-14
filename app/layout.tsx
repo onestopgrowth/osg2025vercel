@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "One Stop Growth - Technology Meets Business Growth",
   description: "Full-service technology and business growth solutions",
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -25,3 +26,6 @@ export default function RootLayout({
   )
 }
 
+
+
+import './globals.css'

@@ -1,160 +1,296 @@
 "use client"
 
-import Header from "@/components/header"
-import Footer from "@/components/footer"
+import { useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { useScroll, useTransform, motion } from "framer-motion"
+import {
+  Truck,
+  BarChart,
+  Shield,
+  Clock,
+  MapPin,
+  ThermometerSnowflake,
+  Package,
+  ArrowRight,
+  CheckCircle,
+  Zap,
+  Anchor,
+  Power,
+} from "lucide-react"
+import { Card } from "@/components/ui/card"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
+import SparklyText from "@/components/sparkly-text"
+
+const GradientBackground = ({ children }: { children: React.ReactNode }) => {
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  })
+
+  const backgroundColor = useTransform(scrollYProgress, [0, 0.5, 1], ["#000047", "#000037", "#000027"])
+
+  return (
+    <motion.div ref={ref} style={{ backgroundColor }}>
+      {children}
+    </motion.div>
+  )
+}
+
+const FeatureCard = ({
+  icon: Icon,
+  title,
+  description,
+}: { icon: React.ElementType; title: string; description: string }) => (
+  <div className="bg-[#000047]/50 backdrop-blur-sm p-6 rounded-lg hover:shadow-xl transition-all duration-300">
+    <Icon className="w-12 h-12 text-[#FF8000] mb-4" />
+    <h3 className="text-xl font-bold mb-2">{title}</h3>
+    <p className="text-sm text-gray-300">{description}</p>
+  </div>
+)
 
 export default function LogisticsFreightHauling() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen text-white overflow-hidden">
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center">
-        <Image
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Freight%20Hauling%20Hero.jpg-Fh3u2Kg1NKveUQIuVFxNjRLxUjwyeB.jpeg"
-          alt="Modern semi-truck illustration in front of shipping containers"
-          width={1920}
-          height={1080}
-          className="absolute inset-0 object-cover w-full h-full"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/30" /> {/* Semi-transparent overlay */}
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Freight Solutions Simplified</h1>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Experience seamless logistics with our reliable freight hauling and real-time tracking services.
-          </p>
-          <div className="space-x-4">
-            <Link
-              href="#learn-more"
-              className="bg-[#FF8000] text-white px-6 py-3 rounded-full font-bold hover:bg-[#FF9900] transition duration-300"
-            >
-              Learn More
-            </Link>
-            <Link
-              href="#contact"
-              className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-full font-bold hover:bg-white hover:text-black transition duration-300"
-            >
-              Contact Us
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Comprehensive Freight Hauling */}
-      <section id="learn-more" className="py-20 bg-[#002347]">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold mb-8 text-center">
-            Comprehensive Freight Hauling Solutions Tailored for Your Business Needs
-          </h2>
-          <p className="text-xl mb-12 text-center">
-            Our logistics services include power-only, box truck, and hot shot options, ensuring flexibility and
-            efficiency. Trust One Stop Growth for reliable freight solutions that streamline your operations and enhance
-            delivery performance.
-          </p>
+      <GradientBackground>
+        {/* Hero Section */}
+        <section className="relative py-32 overflow-hidden">
           <Image
-            src="/placeholder.svg?height=400&width=800"
-            alt="Freight Hauling Solutions"
-            width={800}
-            height={400}
-            className="rounded-lg mx-auto"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Freight%20Hauling%20Hero.jpg-Fh3u2Kg1NKveUQIuVFxNjRLxUjwyeB.jpeg"
+            alt="Modern freight logistics operations"
+            fill
+            className="object-cover"
+            priority
           />
-        </div>
-      </section>
-
-      {/* Route Optimization */}
-      <section className="py-20 bg-[#003366]">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold mb-8 text-center">
-            Optimize Your Routes and Maximize Load Efficiency with Our Expert Solutions
-          </h2>
-          <p className="text-xl mb-12 text-center">
-            Our logistics team specializes in broker collaboration and efficient scheduling. We ensure timely deliveries
-            and optimized routes to enhance your freight operations.
-          </p>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-[#002347] p-8 rounded-lg">
-              <h3 className="text-2xl font-bold mb-4">Broker Collaboration</h3>
-              <p>Seamless communication with brokers for effective load management and execution.</p>
-            </div>
-            <div className="bg-[#002347] p-8 rounded-lg">
-              <h3 className="text-2xl font-bold mb-4">Smart Scheduling</h3>
-              <p>Strategically planned schedules to ensure timely pickups and deliveries for your freight.</p>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#000047]/90 via-[#FF8000]/20 to-transparent" />
+          <div className="container mx-auto px-6">
+            <div className="max-w-3xl">
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                <SparklyText color="#FF8E00" numberOfParticles={8}>
+                  Precision in Every Mile. Execution in Every Load.
+                </SparklyText>
+              </h1>
+              <p className="text-xl mb-8 font-light leading-relaxed">
+                From temperature-controlled transport to expedited shipping, One Stop Growth delivers freight solutions
+                with transparency, efficiency, and methodical execution. No delays. No uncertainty. Just results.
+              </p>
+              <Link
+                href="/contact"
+                className="bg-[#FF8000] text-white px-8 py-4 rounded-full font-bold inline-flex items-center hover:bg-[#FF9900] transition duration-300"
+              >
+                Book Reliable Freight
+                <ArrowRight className="ml-2" size={24} />
+              </Link>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Real-Time Tracking */}
-      <section className="py-20 bg-[#002347]">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold mb-8 text-center">Ensuring Compliance with Real-Time Tracking</h2>
-          <p className="text-xl mb-12 text-center">
-            Our advanced Motive ELD system guarantees real-time tracking of your shipments. With NMFTA certification, we
-            ensure compliance and reliability in every delivery.
-          </p>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-[#003366] p-8 rounded-lg">
-              <h3 className="text-2xl font-bold mb-4">Seamless Monitoring</h3>
-              <p>Stay informed with our cutting-edge tracking solutions for your freight needs.</p>
-            </div>
-            <div className="bg-[#003366] p-8 rounded-lg">
-              <h3 className="text-2xl font-bold mb-4">Certified Compliance</h3>
-              <p>Trust our DOT-certified services for safe and compliant freight transportation.</p>
+        {/* Technology-Driven Freight Execution */}
+        <section className="py-20 relative">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-8 text-center">Technology-Driven Freight Execution</h2>
+            <p className="text-xl mb-12 text-center max-w-3xl mx-auto">
+              At One Stop Growth, we combine advanced logistics technology with strategic execution to provide seamless,
+              broker-friendly freight solutions.
+            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <FeatureCard
+                icon={MapPin}
+                title="Real-Time GPS Tracking"
+                description="Full shipment visibility at every stage."
+              />
+              <FeatureCard
+                icon={BarChart}
+                title="Performance Analytics"
+                description="Data-driven route optimization for cost efficiency."
+              />
+              <FeatureCard
+                icon={Clock}
+                title="ETA Updates"
+                description="Automated status reports for accurate scheduling."
+              />
+              <FeatureCard
+                icon={Zap}
+                title="Project44 Integration"
+                description="Enhanced tracking & supply chain visibility."
+              />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* DOT-Certified Trucking Services */}
-      <section className="py-20 bg-[#003366]">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold mb-8 text-center">
-            DOT-Certified Trucking Services: Your Partner in Reliable Freight Solutions
-          </h2>
-          <p className="text-xl mb-12 text-center">
-            At One Stop Growth, we pride ourselves on providing DOT-certified trucking services that ensure reliability
-            and efficiency. Our diverse fleet, including power-only, box truck, and hot shot options, is designed to
-            meet your unique logistics needs.
-          </p>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-[#002347] p-8 rounded-lg">
-              <h3 className="text-2xl font-bold mb-4">Freight Hauling</h3>
-              <p>Experience seamless freight hauling tailored to your specific requirements with our expert team.</p>
-            </div>
-            <div className="bg-[#002347] p-8 rounded-lg">
-              <h3 className="text-2xl font-bold mb-4">Route Optimization</h3>
-              <p>Optimize your routes for efficiency and cost-effectiveness with our advanced planning solutions.</p>
+        {/* Specialized Freight Capabilities */}
+        <section className="py-20 bg-[#000037]">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-12 text-center">Specialized Freight Capabilities</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-8">
+                <ThermometerSnowflake className="w-12 h-12 text-[#FF8000] mb-4" />
+                <h3 className="text-2xl font-bold mb-4">Temperature-Controlled Transport (Reefer Freight)</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
+                    <span>Box trucks and 53-ft reefer vans for temperature-sensitive cargo.</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
+                    <span>Pharmaceuticals, fresh produce, frozen goods, and critical cold-chain freight.</span>
+                  </li>
+                </ul>
+              </Card>
+              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-8">
+                <Truck className="w-12 h-12 text-[#FF8000] mb-4" />
+                <h3 className="text-2xl font-bold mb-4">Dedicated Lanes & Contract Freight</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
+                    <span>Consistent freight execution for long-term efficiency.</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
+                    <span>Minimized deadhead miles to reduce costs for brokers & shippers.</span>
+                  </li>
+                </ul>
+              </Card>
+              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-8">
+                <Anchor className="w-12 h-12 text-[#FF8000] mb-4" />
+                <h3 className="text-2xl font-bold mb-4">Port & Secured Freight (TWIC Certified)</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
+                    <span>Authorized for secured facilities, including ports and high-security zones.</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
+                    <span>TWIC-certified drivers for seamless pickup & delivery at restricted access locations.</span>
+                  </li>
+                </ul>
+              </Card>
+              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-8">
+                <Power className="w-12 h-12 text-[#FF8000] mb-4" />
+                <h3 className="text-2xl font-bold mb-4">Power-Only & Trailer Interchange</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
+                    <span>Experienced CDL-A drivers for drop & hook operations.</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
+                    <span>Trailer interchange coverage ensures full asset protection.</span>
+                  </li>
+                </ul>
+              </Card>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Call to Action */}
-      <section id="contact" className="py-20 bg-[#002347]">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-8">Seamless Freight Solutions Await You</h2>
-          <p className="text-xl mb-12">
-            Join us at One Stop Growth for reliable and efficient logistics solutions tailored to your needs.
-          </p>
-          <div className="space-x-4">
+        {/* Transparent Insurance & Compliance */}
+        <section className="py-20">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-8 text-center">Transparent Insurance & Compliance</h2>
+            <p className="text-xl mb-12 text-center max-w-3xl mx-auto">
+              At One Stop Growth, we believe in full transparency, ensuring every broker and shipper knows their freight
+              is protected.
+            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-6">
+                <Shield className="w-12 h-12 text-[#FF8000] mb-4" />
+                <h3 className="text-xl font-bold mb-2">$1,000,000 Liability Coverage</h3>
+                <p className="text-sm text-gray-300">GEICO Marine Insurance</p>
+              </Card>
+              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-6">
+                <Package className="w-12 h-12 text-[#FF8000] mb-4" />
+                <h3 className="text-xl font-bold mb-2">$100,000 Cargo Insurance</h3>
+                <p className="text-sm text-gray-300">Dry & Reefer Freight</p>
+              </Card>
+              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-6">
+                <Truck className="w-12 h-12 text-[#FF8000] mb-4" />
+                <h3 className="text-xl font-bold mb-2">Trailer Interchange Coverage</h3>
+                <p className="text-sm text-gray-300">For power-only operations</p>
+              </Card>
+            </div>
+            <div className="mt-8 text-center">
+              <p className="text-lg mb-4">DOT & MC Registered, SCAC Certified</p>
+              <p className="text-lg mb-4">Regular FMCSA & DOT Compliance Audits</p>
+              <p className="text-lg">
+                We proactively provide our Certificate of Insurance (COI) upon request to ensure complete transparency.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Brokers & Shippers Choose One Stop Growth */}
+        <section className="py-20 bg-[#000037]">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-8 text-center">Why Brokers & Shippers Choose One Stop Growth</h2>
+            <p className="text-xl mb-12 text-center max-w-3xl mx-auto italic">
+              "Most freight carriers just move loads. We execute logistics with precision."
+            </p>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-8">
+                <Truck className="w-12 h-12 text-[#FF8000] mb-4" />
+                <h3 className="text-2xl font-bold mb-4">Reliable, Broker-Friendly Freight Execution</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
+                    <span>Clear, proactive communication with brokers.</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
+                    <span>On-time pickups & drop-offs with real-time tracking.</span>
+                  </li>
+                </ul>
+              </Card>
+              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-8">
+                <Zap className="w-12 h-12 text-[#FF8000] mb-4" />
+                <h3 className="text-2xl font-bold mb-4">Technology-Backed Visibility & Efficiency</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
+                    <span>Motive ELD & GPS tracking for operational transparency.</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
+                    <span>Project44 integration for seamless freight visibility.</span>
+                  </li>
+                </ul>
+              </Card>
+              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-8">
+                <BarChart className="w-12 h-12 text-[#FF8000] mb-4" />
+                <h3 className="text-2xl font-bold mb-4">Commitment to Growth & Innovation</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
+                    <span>Actively developing a carrier-centric TMS to revolutionize load execution.</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
+                    <span>Built for efficiency, backed by strategy.</span>
+                  </li>
+                </ul>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-3xl font-bold mb-6">Book Freight Execution You Can Trust</h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto">Stop Uncertainty. Start Moving Freight Smarter.</p>
             <Link
-              href="#contact"
-              className="bg-[#FF8000] text-white px-6 py-3 rounded-full font-bold hover:bg-[#FF9900] transition duration-300"
+              href="/contact"
+              className="bg-[#FF8000] text-white px-8 py-4 rounded-full font-bold inline-flex items-center hover:bg-[#FF9900] transition duration-300"
             >
-              Contact
-            </Link>
-            <Link
-              href="#learn-more"
-              className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-full font-bold hover:bg-white hover:text-black transition duration-300"
-            >
-              Learn More
+              Get Reliable Freight Execution
+              <ArrowRight className="ml-2" size={24} />
             </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      </GradientBackground>
 
       <Footer />
     </main>

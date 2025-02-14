@@ -63,12 +63,10 @@ export default function GrowthStrategy() {
             </p>
             <h2 className="text-4xl font-bold text-white">Unified Growth Strategy</h2>
             <p className="text-gray-300 leading-relaxed">
-              We believe in providing a unified strategy across all offerings—whether it's custom software,
-              infrastructure engineering, business development, or logistics. We take a holistic view, integrating
-              technology and process improvement at every level. This ensures that each solution is built to enhance and
-              streamline your operations from start to finish. With us, you don't just get a service — you get a partner
-              committed to driving your success through a cohesive, methodical approach across all areas of your
-              business.
+              Growth doesn't come from patchwork solutions or half-measures. It requires a structured, methodical
+              approach. We don't treat technology, logistics, and business strategy as separate pieces - we integrate
+              them into a single, seamless system. With us, you don't just get a service; you get a partner who takes
+              full responsibility for your success.
             </p>
           </div>
 

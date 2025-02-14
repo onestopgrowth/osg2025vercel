@@ -23,16 +23,12 @@ export default function Stats() {
           <div className="space-y-8">
             <p className="text-[#FF8001] text-lg font-medium">Why Choose One Stop Growth</p>
             <h2 className="text-4xl font-bold text-white leading-tight">
-              One Vision, One Solution,
-              <br />
-              Complete Accountability.
+              Why One Stop Growth? Because Accountability Matters
             </h2>
             <p className="text-gray-300 leading-relaxed text-base">
-              At One Stop Growth, we focus on simplicity and efficiency. We believe in clear ownership of every aspect
-              of your project—from concept to execution. Our methodology emphasizes a thorough understanding of your
-              needs, ensuring that each solution is tailor-made, scalable, and seamlessly integrated into your
-              operations. With us, you have a single, dedicated partner driving your success, leaving no room for
-              confusion or blame—just results.
+              We don't pass blame, chase fads, or overcomplicate. Every project we take on is executed with full
+              ownership - from concept to completion. We prioritize efficiency, transparency, and clarity. The result? A
+              streamlined process that works, without excuses.
             </p>
 
             {/* Stats */}

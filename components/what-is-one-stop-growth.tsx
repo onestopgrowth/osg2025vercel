@@ -16,11 +16,10 @@ export default function WhatIsOneStopGrowth() {
           What Is One Stop Growth, Anyway?
         </motion.h2>
         <p className="text-[#FD7702] leading-relaxed p-7 rounded-xl bg-[#002347] max-w-3xl text-center">
-          It's more than just a name. It's where software development, IT infrastructure, business development, and
-          logistics intersect—driven by the principles of constant improvement. We leverage the expertise of Six Sigma
-          methodologies, Scrum, and Agile practices to ensure every step of our process is optimized for efficiency and
-          impact. Whether it's building scalable systems, streamlining operations, driving sales, or delivering freight,
-          our Kaizen approach ensures we're always evolving, always improving, and always delivering results.
+          It is not just a name; it is a philosophy. Whether in software development, IT infrastructure, business
+          development, or logistics, we follow one principle: Do what is required, and do it well. We apply Six Sigma,
+          Agile, and Kaizen methodologies not because they are fashionable, but because they are effective. Waste is cut
+          away, inefficiencies are discarded, and what remains is a streamlined path to success.
         </p>
       </div>
     </section>
