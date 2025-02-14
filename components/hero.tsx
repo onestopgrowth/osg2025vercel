@@ -5,7 +5,7 @@ import Image from "next/image"
 import { ChevronDown } from "lucide-react"
 import { motion } from "framer-motion"
 import { Inter } from "next/font/google"
-import SparklyText from "./sparkly-text"
+import { Button } from "@/components/ui/button"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -33,7 +33,7 @@ export default function Hero() {
   }
 
   return (
-    <section ref={sectionRef} className={`relative h-screen flex flex-col ${inter.className}`}>
+    <section ref={sectionRef} className={`relative h-screen ${inter.className}`}>
       {/* Hero Image */}
       <div className="absolute inset-0">
         <Image
@@ -45,36 +45,31 @@ export default function Hero() {
           priority
         />
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#002347]/70 via-[#003366]/60 to-[#003F7D]/50"></div>
+        <div className="absolute inset-0 bg-[#000033]/60"></div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col h-full">
-        {/* Main Text */}
-        <div className="flex-1 flex items-end justify-center pb-32">
-          <motion.h1
-            className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight whitespace-nowrap"
-            variants={textVariants}
-            animate="animate"
-          >
-            Our focus is on growth
-          </motion.h1>
-        </div>
+      <div className="relative z-10 flex flex-col items-center h-full pt-[250px]">
+        <motion.h1
+          variants={textVariants}
+          animate="animate"
+          className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white text-center mb-32"
+        >
+          Our focus is on growth
+        </motion.h1>
 
-        {/* Get a clearer picture Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="flex flex-col items-center cursor-pointer group mb-12"
-          onClick={scrollToNextSection}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="text-2xl md:text-3xl tracking-wider">
-            <SparklyText color="#FF8000" numberOfParticles={4}>
-              Get a clearer picture
-            </SparklyText>
-          </div>
-          <ChevronDown className="text-[#FF8000] w-6 h-6 mt-2" />
+          <Button
+            onClick={scrollToNextSection}
+            className="bg-[#FF8000] hover:bg-[#FF8000]/90 text-white px-6 py-2 rounded-full text-lg font-medium transition-colors duration-300 flex items-center gap-2"
+          >
+            Get a clearer picture
+            <ChevronDown className="w-5 h-5" />
+          </Button>
         </motion.div>
       </div>
     </section>

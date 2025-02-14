@@ -3,18 +3,28 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ChevronDown } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 const navItems = [
-  { name: "Our Services", href: "/services" },
+  {
+    name: "Our Services",
+    href: "/services",
+    subItems: [
+      { name: "Software Development", href: "/services/software-development" },
+      { name: "IT Infrastructure & Cybersecurity", href: "/services/it-infrastructure-cybersecurity" },
+      { name: "Business Development", href: "/services/business-development" },
+      { name: "Logistics & Freight Hauling", href: "/services/logistics-freight-hauling" },
+    ],
+  },
   { name: "About Us", href: "/about" },
-  { name: "More Info", href: "#" },
-  // { name: "Case Studies", href: "/case-studies" }, // Commented out to hide this option
+  { name: "Contact Us", href: "/contact" },
 ]
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,10 +35,14 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const handleSubmenuToggle = (itemName: string) => {
+    setActiveSubmenu(activeSubmenu === itemName ? null : itemName)
+  }
+
   return (
     <header
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-gradient-to-r from-[#002347]/90 to-[#003366]/90 backdrop-blur-sm" : "bg-transparent"
+        isScrolled ? "bg-[#000047]/95 backdrop-blur-sm" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6">
@@ -42,16 +56,40 @@ export default function Header() {
               className="w-auto h-12"
             />
           </Link>
-          <nav className="hidden md:block">
-            <ul className="flex items-center space-x-8">
-              {navItems.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="text-white hover:text-[#FF8000] transition-colors text-lg">
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <nav className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <div key={item.name} className="relative group">
+                <button
+                  className="text-white hover:text-[#FF8000] transition-colors text-lg font-medium flex items-center"
+                  onClick={() => handleSubmenuToggle(item.name)}
+                >
+                  {item.name}
+                  {item.subItems && <ChevronDown className="ml-1 h-4 w-4" />}
+                </button>
+                {item.subItems && (
+                  <div className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-[#000047] ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                    <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                      {item.subItems.map((subItem) => (
+                        <Link
+                          key={subItem.name}
+                          href={subItem.href}
+                          className="block px-4 py-2 text-sm text-white hover:bg-[#FF8000] hover:text-white"
+                          role="menuitem"
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+            <Button
+              asChild
+              className="bg-[#FF8000] hover:bg-[#FF9900] text-white font-bold py-2 px-4 rounded-full transition-colors text-lg"
+            >
+              <Link href="/contact">Book Consultation</Link>
+            </Button>
           </nav>
           <button
             className="md:hidden text-white p-2 rounded-md hover:bg-[#0000FF]/20"
@@ -64,21 +102,60 @@ export default function Header() {
       {mobileMenuOpen && (
         <nav
           className={`md:hidden ${
-            isScrolled ? "bg-[#002347]/90 backdrop-blur-sm" : "bg-[#000047]"
+            isScrolled ? "bg-[#000047]/95 backdrop-blur-sm" : "bg-[#000047]"
           } border-t border-white/10`}
         >
-          <ul className="flex flex-col space-y-1 px-6 py-4">
+          <ul className="flex flex-col space-y-4 px-6 py-4">
             {navItems.map((item) => (
               <li key={item.name}>
-                <Link
-                  href={item.href}
-                  className="text-white hover:text-[#FF8000] transition-colors block py-2 text-lg"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
+                {item.subItems ? (
+                  <div>
+                    <button
+                      className="text-white hover:text-[#FF8000] transition-colors block py-2 text-lg font-medium w-full text-left flex items-center justify-between"
+                      onClick={() => handleSubmenuToggle(item.name)}
+                    >
+                      {item.name}
+                      <ChevronDown
+                        className={`ml-1 h-4 w-4 transform transition-transform ${activeSubmenu === item.name ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    {activeSubmenu === item.name && (
+                      <ul className="pl-4 mt-2 space-y-2">
+                        {item.subItems.map((subItem) => (
+                          <li key={subItem.name}>
+                            <Link
+                              href={subItem.href}
+                              className="text-white hover:text-[#FF8000] transition-colors block py-1 text-base"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              {subItem.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="text-white hover:text-[#FF8000] transition-colors block py-2 text-lg font-medium"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )}
               </li>
             ))}
+            <li>
+              <Button
+                asChild
+                className="bg-[#FF8000] hover:bg-[#FF9900] text-white font-bold py-2 px-4 rounded-full transition-colors w-full text-lg"
+              >
+                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+                  Book Consultation
+                </Link>
+              </Button>
+            </li>
           </ul>
         </nav>
       )}
