@@ -97,6 +97,9 @@ export default function LogisticsFreightHauling() {
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50" />
+        </section>
+
+        <section className="py-16 bg-[#000047]">
           <div className="container mx-auto px-6">
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
@@ -155,8 +158,8 @@ export default function LogisticsFreightHauling() {
                 className="relative h-[300px] md:h-[400px]"
               >
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="Freight logistics challenges"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-15%20at%2012.23.37%E2%80%AFAM-82SqusvuNQbAclBmlX1u56U2GJVtWO.png"
+                  alt="Snow-covered winter road conditions demonstrating challenging freight logistics scenarios"
                   layout="fill"
                   objectFit="cover"
                   className="rounded-lg"

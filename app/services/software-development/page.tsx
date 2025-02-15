@@ -95,21 +95,21 @@ export default function SoftwareDevelopment() {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#000047]/90 via-[#FF8000]/50 to-black/90" />
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="container mx-auto px-6 relative z-10"
-        >
-          <h1 className="text-2xl md:text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-[#0000FF]">
-            Precision. Performance. Scalability.
-          </h1>
-          <p className="text-sm md:text-base mb-8 max-w-3xl">
-            Software should work for you, not against you. At One Stop Growth, we develop systems designed to eliminate
-            inefficiencies, scale with demand, and drive sustainable business growth. No technical debt. No wasted code.
-            Just execution.
-          </p>
-        </motion.div>
+      </Section>
+
+      <Section className="bg-[#000047] py-16">
+        <div className="container mx-auto px-6">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+            <h1 className="text-2xl md:text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-[#0000FF]">
+              Precision. Performance. Scalability.
+            </h1>
+            <p className="text-sm md:text-base mb-8 max-w-3xl text-white">
+              Software should work for you, not against you. At One Stop Growth, we develop systems designed to
+              eliminate inefficiencies, scale with demand, and drive sustainable business growth. No technical debt. No
+              wasted code. Just execution.
+            </p>
+          </motion.div>
+        </div>
       </Section>
 
       {/* The Problem with Traditional Software Development */}
