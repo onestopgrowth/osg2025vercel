@@ -2,6 +2,7 @@
 
 import { useRef } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { Monitor, BotIcon as Robot, Server, Layout, Filter, Briefcase, Truck, Package } from "lucide-react"
 import { useInView } from "framer-motion"
 
@@ -62,7 +63,7 @@ export default function GrowthStrategy() {
               How We Do It.
             </p>
             <h2 className="text-4xl font-bold text-white">Unified Growth Strategy</h2>
-            <p className="text-gray-300 leading-relaxed">
+            <p className="text-secondary leading-relaxed">
               Growth doesn't come from patchwork solutions or half-measures. It requires a structured, methodical
               approach. We don't treat technology, logistics, and business strategy as separate pieces - we integrate
               them into a single, seamless system. With us, you don't just get a service; you get a partner who takes
@@ -96,13 +97,24 @@ export default function GrowthStrategy() {
         <div className="space-y-4 mt-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {services.map((service, index) => (
-              <div
+              <Link
                 key={index}
+                href={
+                  service.title === "Application Development"
+                    ? "/services/software-development"
+                    : service.title === "AI & ML Solutions"
+                      ? "/services/software-development#ai"
+                      : service.title === "IT Infrastructure"
+                        ? "/services/it-infrastructure-cybersecurity"
+                        : "/services/software-development#ui"
+                }
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-[#003366] p-4 rounded-xl flex flex-col items-center text-center space-y-2 
-                   shadow-[5px_5px_15px_rgba(0,0,0,0.3),_-5px_-5px_15px_rgba(255,255,255,0.05)]
-                   hover:shadow-[inset_5px_5px_15px_rgba(0,0,0,0.3),_inset_-5px_-5px_15px_rgba(255,255,255,0.05)]
-                   hover:bg-[#003F7D]
-                   transition-all duration-300 cursor-pointer"
+                  shadow-[5px_5px_15px_rgba(0,0,0,0.3),_-5px_-5px_15px_rgba(255,255,255,0.05)]
+                  hover:shadow-[inset_5px_5px_15px_rgba(0,0,0,0.3),_inset_-5px_-5px_15px_rgba(255,255,255,0.05)]
+                  hover:bg-[#003F7D]
+                  transition-all duration-300 cursor-pointer"
               >
                 {service.icon}
                 <h3 className="text-blue-300 font-medium leading-tight h-12 flex items-center justify-center text-sm">
@@ -110,18 +122,29 @@ export default function GrowthStrategy() {
                   <br />
                   {service.title.split(" ").slice(-1)}
                 </h3>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {additionalServices.map((service, index) => (
-              <div
+              <Link
                 key={index}
+                href={
+                  service.title === "Lead Generation & CRM Mgmt."
+                    ? "/services/business-development"
+                    : service.title === "Biz Dev Consulting"
+                      ? "/services/business-development"
+                      : service.title === "Freight Hauling Services"
+                        ? "/services/logistics-freight-hauling"
+                        : "/services/logistics-freight-hauling"
+                }
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-[#003366] p-4 rounded-xl flex flex-col items-center text-center space-y-2 
-                   shadow-[5px_5px_15px_rgba(0,0,0,0.3),_-5px_-5px_15px_rgba(255,255,255,0.05)]
-                   hover:shadow-[inset_5px_5px_15px_rgba(0,0,0,0.3),_inset_-5px_-5px_15px_rgba(255,255,255,0.05)]
-                   hover:bg-[#003F7D]
-                   transition-all duration-300 cursor-pointer"
+                  shadow-[5px_5px_15px_rgba(0,0,0,0.3),_-5px_-5px_15px_rgba(255,255,255,0.05)]
+                  hover:shadow-[inset_5px_5px_15px_rgba(0,0,0,0.3),_inset_-5px_-5px_15px_rgba(255,255,255,0.05)]
+                  hover:bg-[#003F7D]
+                  transition-all duration-300 cursor-pointer"
               >
                 {service.icon}
                 <h3 className="text-blue-300 font-medium leading-tight h-12 flex items-center justify-center text-sm">
@@ -129,7 +152,7 @@ export default function GrowthStrategy() {
                   <br />
                   {service.title.split(" ").slice(-1)}
                 </h3>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

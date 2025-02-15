@@ -62,8 +62,8 @@ export default function ITInfrastructureCybersecurity() {
       {/* 1. Header Section */}
       <Section className="relative h-[70vh] flex items-center">
         <Image
-          src="/placeholder.svg?height=1080&width=1920"
-          alt="IT Infrastructure & Cybersecurity"
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/One%20Stop%20Growth%20Infrastructure.jpg-eKujYBHwnA5SvcXy3mZkwIpoRKCjHT.jpeg"
+          alt="Modern data center hallway with illuminated server racks and code display, representing the fusion of physical and digital infrastructure"
           fill
           className="object-cover"
           priority

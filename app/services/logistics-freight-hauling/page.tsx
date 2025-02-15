@@ -1,27 +1,15 @@
 "use client"
 
+import type React from "react"
+
 import { useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { useScroll, useTransform, motion } from "framer-motion"
-import {
-  Truck,
-  BarChart,
-  Shield,
-  Clock,
-  MapPin,
-  ThermometerSnowflake,
-  Package,
-  ArrowRight,
-  CheckCircle,
-  Zap,
-  Anchor,
-  Power,
-} from "lucide-react"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { Shield, MapPin, ArrowRight, AlertTriangle, PieChart, MessageCircle, Truck, CheckCircle } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import SparklyText from "@/components/sparkly-text"
 
 const GradientBackground = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null)
@@ -44,250 +32,370 @@ const FeatureCard = ({
   title,
   description,
 }: { icon: React.ElementType; title: string; description: string }) => (
-  <div className="bg-[#000047]/50 backdrop-blur-sm p-6 rounded-lg hover:shadow-xl transition-all duration-300">
-    <Icon className="w-12 h-12 text-[#FF8000] mb-4" />
-    <h3 className="text-xl font-bold mb-2">{title}</h3>
-    <p className="text-sm text-gray-300">{description}</p>
-  </div>
+  <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }}>
+    <Card className="bg-gradient-to-br from-[#000047] to-[#0000FF] p-6 rounded-lg shadow-[0_10px_20px_rgba(0,0,255,0.2)] hover:shadow-[0_20px_30px_rgba(0,0,255,0.3)] transition-all duration-300 border-0 overflow-hidden relative">
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[rgba(255,128,0,0.1)] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+      <Icon className="w-12 h-12 text-[#FF8000] mb-4 relative z-10" />
+      <h3 className="text-xl font-bold mb-2 leading-tight tracking-wide text-white relative z-10">{title}</h3>
+      <p className="text-sm text-gray-300 leading-relaxed tracking-wide relative z-10">{description}</p>
+    </Card>
+  </motion.div>
+)
+
+const TimelineItem = ({ date, title, description }: { date: string; title: string; description: string }) => (
+  <motion.div
+    initial={{ opacity: 0, x: -50 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.5 }}
+    className="flex mb-8"
+  >
+    <div className="flex flex-col items-center mr-4">
+      <div className="w-4 h-4 bg-[#FF8000] rounded-full shadow-[0_0_10px_#FF8000]"></div>
+      <div className="w-0.5 h-full bg-gradient-to-b from-[#FF8000] to-transparent"></div>
+    </div>
+    <div className="bg-gradient-to-r from-[#000047] to-[#0000FF] p-6 rounded-lg shadow-[0_10px_20px_rgba(0,0,255,0.2)] relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[rgba(255,128,0,0.1)] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+      <p className="text-sm text-[#FF8000] mb-1 font-bold relative z-10">{date}</p>
+      <h3 className="text-lg font-bold mb-2 leading-tight tracking-wide text-white relative z-10">{title}</h3>
+      <p className="text-gray-300 leading-relaxed tracking-wide relative z-10">{description}</p>
+    </div>
+  </motion.div>
+)
+
+const ProcessStep = ({ number, title, description }: { number: number; title: string; description: string }) => (
+  <motion.div
+    className="flex items-start mb-8"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+    viewport={{ once: true }}
+  >
+    <div className="bg-gradient-to-br from-[#FF8000] to-[#FFA500] text-[#000047] rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0 shadow-[0_0_20px_rgba(255,128,0,0.5)]">
+      <span className="text-xl font-bold">{number}</span>
+    </div>
+    <div className="bg-gradient-to-r from-[#000047] to-[#0000FF] p-6 rounded-lg shadow-[0_10px_20px_rgba(0,0,255,0.2)] flex-grow relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[rgba(255,128,0,0.1)] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+      <h3 className="text-xl font-bold mb-2 leading-tight tracking-wide text-[#FF8000] relative z-10">{title}</h3>
+      <p className="text-gray-300 leading-relaxed tracking-wide relative z-10">{description}</p>
+    </div>
+  </motion.div>
 )
 
 export default function LogisticsFreightHauling() {
   return (
-    <main className="min-h-screen text-white overflow-hidden">
+    <main className="min-h-screen text-white overflow-hidden tracking-wide">
       <Header />
 
       <GradientBackground>
         {/* Hero Section */}
-        <section className="relative py-32 overflow-hidden">
+        <section className="relative w-full max-w-[1920px] mx-auto aspect-[16/9] overflow-hidden">
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Freight%20Hauling%20Hero.jpg-Fh3u2Kg1NKveUQIuVFxNjRLxUjwyeB.jpeg"
-            alt="Modern freight logistics operations"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/OSG%20Freight%20Hero.jpg-3wUCQUDEDgPhyr5XmrdzCCuOfnSq0z.jpeg"
+            alt="One Stop Growth branded semi-truck with custom branding and DOT/MC numbers, positioned against a backdrop of shipping containers"
             fill
-            className="object-cover"
+            className="object-contain"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#000047]/90 via-[#FF8000]/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50" />
           <div className="container mx-auto px-6">
-            <div className="max-w-3xl">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                <SparklyText color="#FF8E00" numberOfParticles={8}>
-                  Precision in Every Mile. Execution in Every Load.
-                </SparklyText>
-              </h1>
-              <p className="text-xl mb-8 font-light leading-relaxed">
-                From temperature-controlled transport to expedited shipping, One Stop Growth delivers freight solutions
-                with transparency, efficiency, and methodical execution. No delays. No uncertainty. Just results.
-              </p>
-              <Link
-                href="/contact"
-                className="bg-[#FF8000] text-white px-8 py-4 rounded-full font-bold inline-flex items-center hover:bg-[#FF9900] transition duration-300"
-              >
-                Book Reliable Freight
-                <ArrowRight className="ml-2" size={24} />
-              </Link>
-            </div>
+            <motion.h1
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="text-4xl md:text-5xl font-bold mb-6 text-white"
+            >
+              Freight Hauling – Execution Without Excuses
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="text-xl mb-8 max-w-3xl text-gray-300"
+            >
+              Precision in Every Mile. Execution in Every Load.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="text-lg mb-8 max-w-3xl text-gray-300"
+            >
+              Freight isn't just about moving goods—it's about strategy. We operate with discipline, ensuring every load
+              is handled with intent, every mile is optimized, and every broker gets the reliability they need. No
+              delays. No excuses. Just execution.
+            </motion.p>
           </div>
         </section>
 
-        {/* Technology-Driven Freight Execution */}
-        <section className="py-20 relative">
+        {/* The Problem with Traditional Freight Logistics */}
+        <section className="py-20 bg-gradient-to-b from-[#000047] to-[#000037]">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-8 text-center">Technology-Driven Freight Execution</h2>
-            <p className="text-xl mb-12 text-center max-w-3xl mx-auto">
-              At One Stop Growth, we combine advanced logistics technology with strategic execution to provide seamless,
-              broker-friendly freight solutions.
-            </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <motion.h2
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl font-bold mb-12 leading-tight tracking-wide text-center text-[#FF8000]"
+            >
+              The Problem with Traditional Freight Logistics
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-lg leading-relaxed mb-6 tracking-wide text-gray-300"
+            >
+              Freight isn't a guessing game—at least, it shouldn't be. Too many carriers operate in survival mode,
+              chasing loads instead of structuring their business for long-term success. That's how you get:
+            </motion.p>
+            <div className="grid md:grid-cols-2 gap-12 items-start">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="relative h-[300px] md:h-[400px]"
+              >
+                <Image
+                  src="/placeholder.svg?height=400&width=600"
+                  alt="Freight logistics challenges"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-lg"
+                />
+              </motion.div>
+              <div className="space-y-6">
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex items-start bg-gradient-to-r from-[#000047] to-[#0000FF] p-6 rounded-lg shadow-[0_10px_20px_rgba(0,0,255,0.2)] relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[rgba(255,128,0,0.1)] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                  <AlertTriangle className="w-8 h-8 text-[#FF8000] mr-4 flex-shrink-0 relative z-10" />
+                  <div className="relative z-10">
+                    <h3 className="text-xl font-bold mb-2 leading-tight tracking-wide text-white">
+                      Freight Instability
+                    </h3>
+                    <p className="text-gray-300 leading-relaxed tracking-wide">
+                      Running load to load with no predictable revenue.
+                    </p>
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="flex items-start bg-gradient-to-r from-[#000047] to-[#0000FF] p-6 rounded-lg shadow-[0_10px_20px_rgba(0,0,255,0.2)] relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[rgba(255,128,0,0.1)] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                  <PieChart className="w-8 h-8 text-[#FF8000] mr-4 flex-shrink-0 relative z-10" />
+                  <div className="relative z-10">
+                    <h3 className="text-xl font-bold mb-2 leading-tight tracking-wide text-white">
+                      Wasted Miles & Deadhead
+                    </h3>
+                    <p className="text-gray-300 leading-relaxed tracking-wide">
+                      Poor planning leads to empty miles and lost profits.
+                    </p>
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="flex items-start bg-gradient-to-r from-[#000047] to-[#0000FF] p-6 rounded-lg shadow-[0_10px_20px_rgba(0,0,255,0.2)] relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[rgba(255,128,0,0.1)] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                  <MessageCircle className="w-8 h-8 text-[#FF8000] mr-4 flex-shrink-0 relative z-10" />
+                  <div className="relative z-10">
+                    <h3 className="text-xl font-bold mb-2 leading-tight tracking-wide text-white">
+                      Lack of Coordination
+                    </h3>
+                    <p className="text-gray-300 leading-relaxed tracking-wide">
+                      Disorganized operations lead to delays and frustration.
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="text-lg mt-8 font-bold text-center text-[#FF8000]"
+            >
+              That's not how we operate. We execute with precision, every time.
+            </motion.p>
+          </div>
+        </section>
+
+        {/* Our Approach – Freight Execution, No Guesswork */}
+        <section className="py-20 bg-[#000037]">
+          <div className="container mx-auto px-6">
+            <motion.h2
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl font-bold mb-12 leading-tight tracking-wide text-center text-[#FF8000]"
+            >
+              Our Approach – Freight Execution, No Guesswork
+            </motion.h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              <FeatureCard
+                icon={Truck}
+                title="Reliable, Broker-Friendly Load Execution"
+                description="Clear, professional communication with brokers and dispatchers. On-time pickup and delivery—because timing is everything. Layover & detention transparency—no surprises."
+              />
               <FeatureCard
                 icon={MapPin}
-                title="Real-Time GPS Tracking"
-                description="Full shipment visibility at every stage."
+                title="Route Optimization & Freight Planning"
+                description="Minimized deadhead miles to cut costs and maximize efficiency. Strategic load sequencing to keep freight moving without downtime. Back-to-back load execution for seamless operations."
               />
               <FeatureCard
-                icon={BarChart}
-                title="Performance Analytics"
-                description="Data-driven route optimization for cost efficiency."
+                icon={Shield}
+                title="Fleet & Compliance Standards"
+                description="Fleet ready for any load: Power-Only, CDL-rated 26ft Box Trucks, and Hot Shot units. Reefer breakdown coverage, 100K Cargo Insurance, Motive ELD Compliance, and SCAC Certified."
               />
-              <FeatureCard
-                icon={Clock}
-                title="ETA Updates"
-                description="Automated status reports for accurate scheduling."
+            </div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="text-lg mt-8 text-center text-gray-300"
+            >
+              Freight should never be a gamble. We eliminate inefficiencies, execute with precision, and keep brokers in
+              the loop—always.
+            </motion.p>
+          </div>
+        </section>
+
+        {/* Where We Stand – Full Broker Readiness */}
+        <section className="py-20 bg-gradient-to-b from-[#000037] to-[#000047]">
+          <div className="container mx-auto px-6">
+            <motion.h2
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl font-bold mb-12 leading-tight tracking-wide text-center text-[#FF8000]"
+            >
+              Where We Stand – Full Broker Readiness
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-lg mb-8 text-center text-gray-300"
+            >
+              Brokers don't like surprises, and neither do we. Here's where we stand:
+            </motion.p>
+            <div className="max-w-2xl mx-auto">
+              <TimelineItem
+                date="August 29, 2024"
+                title="DOT Active Since"
+                description="Our journey began with the activation of our DOT authority, marking our commitment to excellence in freight logistics."
               />
-              <FeatureCard
-                icon={Zap}
-                title="Project44 Integration"
-                description="Enhanced tracking & supply chain visibility."
+              <TimelineItem
+                date="February 28, 2025"
+                title="Full Broker-Ready Status"
+                description="By this date, we will have cleared FMCSA's New Entrant Safety Audit with full compliance, built a strong operating history with no violations or setbacks, and met or exceeded the 6-month authority standard required by top brokers and load boards."
+              />
+              <TimelineItem
+                date="Ongoing"
+                title="Transparency and Compliance"
+                description="We operate with full transparency so brokers know exactly what they're getting—a carrier that's disciplined, compliant, and built for execution."
               />
             </div>
           </div>
         </section>
 
-        {/* Specialized Freight Capabilities */}
-        <section className="py-20 bg-[#000037]">
+        {/* How We Operate – A Methodical Execution Process */}
+        <section className="py-20 bg-[#000047]">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-12 text-center">Specialized Freight Capabilities</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-8">
-                <ThermometerSnowflake className="w-12 h-12 text-[#FF8000] mb-4" />
-                <h3 className="text-2xl font-bold mb-4">Temperature-Controlled Transport (Reefer Freight)</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
-                    <span>Box trucks and 53-ft reefer vans for temperature-sensitive cargo.</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
-                    <span>Pharmaceuticals, fresh produce, frozen goods, and critical cold-chain freight.</span>
-                  </li>
-                </ul>
-              </Card>
-              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-8">
-                <Truck className="w-12 h-12 text-[#FF8000] mb-4" />
-                <h3 className="text-2xl font-bold mb-4">Dedicated Lanes & Contract Freight</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
-                    <span>Consistent freight execution for long-term efficiency.</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
-                    <span>Minimized deadhead miles to reduce costs for brokers & shippers.</span>
-                  </li>
-                </ul>
-              </Card>
-              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-8">
-                <Anchor className="w-12 h-12 text-[#FF8000] mb-4" />
-                <h3 className="text-2xl font-bold mb-4">Port & Secured Freight (TWIC Certified)</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
-                    <span>Authorized for secured facilities, including ports and high-security zones.</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
-                    <span>TWIC-certified drivers for seamless pickup & delivery at restricted access locations.</span>
-                  </li>
-                </ul>
-              </Card>
-              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-8">
-                <Power className="w-12 h-12 text-[#FF8000] mb-4" />
-                <h3 className="text-2xl font-bold mb-4">Power-Only & Trailer Interchange</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
-                    <span>Experienced CDL-A drivers for drop & hook operations.</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
-                    <span>Trailer interchange coverage ensures full asset protection.</span>
-                  </li>
-                </ul>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Transparent Insurance & Compliance */}
-        <section className="py-20">
-          <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-8 text-center">Transparent Insurance & Compliance</h2>
-            <p className="text-xl mb-12 text-center max-w-3xl mx-auto">
-              At One Stop Growth, we believe in full transparency, ensuring every broker and shipper knows their freight
-              is protected.
-            </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-6">
-                <Shield className="w-12 h-12 text-[#FF8000] mb-4" />
-                <h3 className="text-xl font-bold mb-2">$1,000,000 Liability Coverage</h3>
-                <p className="text-sm text-gray-300">GEICO Marine Insurance</p>
-              </Card>
-              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-6">
-                <Package className="w-12 h-12 text-[#FF8000] mb-4" />
-                <h3 className="text-xl font-bold mb-2">$100,000 Cargo Insurance</h3>
-                <p className="text-sm text-gray-300">Dry & Reefer Freight</p>
-              </Card>
-              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-6">
-                <Truck className="w-12 h-12 text-[#FF8000] mb-4" />
-                <h3 className="text-xl font-bold mb-2">Trailer Interchange Coverage</h3>
-                <p className="text-sm text-gray-300">For power-only operations</p>
-              </Card>
-            </div>
-            <div className="mt-8 text-center">
-              <p className="text-lg mb-4">DOT & MC Registered, SCAC Certified</p>
-              <p className="text-lg mb-4">Regular FMCSA & DOT Compliance Audits</p>
-              <p className="text-lg">
-                We proactively provide our Certificate of Insurance (COI) upon request to ensure complete transparency.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Why Brokers & Shippers Choose One Stop Growth */}
-        <section className="py-20 bg-[#000037]">
-          <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-8 text-center">Why Brokers & Shippers Choose One Stop Growth</h2>
-            <p className="text-xl mb-12 text-center max-w-3xl mx-auto italic">
-              "Most freight carriers just move loads. We execute logistics with precision."
-            </p>
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-8">
-                <Truck className="w-12 h-12 text-[#FF8000] mb-4" />
-                <h3 className="text-2xl font-bold mb-4">Reliable, Broker-Friendly Freight Execution</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
-                    <span>Clear, proactive communication with brokers.</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
-                    <span>On-time pickups & drop-offs with real-time tracking.</span>
-                  </li>
-                </ul>
-              </Card>
-              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-8">
-                <Zap className="w-12 h-12 text-[#FF8000] mb-4" />
-                <h3 className="text-2xl font-bold mb-4">Technology-Backed Visibility & Efficiency</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
-                    <span>Motive ELD & GPS tracking for operational transparency.</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
-                    <span>Project44 integration for seamless freight visibility.</span>
-                  </li>
-                </ul>
-              </Card>
-              <Card className="bg-[#000047]/50 backdrop-blur-sm border-0 p-8">
-                <BarChart className="w-12 h-12 text-[#FF8000] mb-4" />
-                <h3 className="text-2xl font-bold mb-4">Commitment to Growth & Innovation</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
-                    <span>Actively developing a carrier-centric TMS to revolutionize load execution.</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-[#FF8000] mr-2" />
-                    <span>Built for efficiency, backed by strategy.</span>
-                  </li>
-                </ul>
-              </Card>
+            <motion.h2
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl font-bold mb-12 leading-tight tracking-wide text-center text-[#FF8000]"
+            >
+              How We Operate – A Methodical Execution Process
+            </motion.h2>
+            <div className="max-w-3xl mx-auto">
+              <ProcessStep
+                number={1}
+                title="Smart Load Strategy"
+                description="Lane-based planning instead of random spot market scrambling. Tactical scheduling to maximize efficiency and reduce downtime."
+              />
+              <ProcessStep
+                number={2}
+                title="Flawless Execution"
+                description="Live tracking & updates—no broker chasing down status reports. Direct coordination—consistent communication from pickup to delivery."
+              />
+              <ProcessStep
+                number={3}
+                title="Continuous Refinement"
+                description="Data-driven adjustments to eliminate waste and optimize future loads. Proactive issue management—solving problems before they start."
+              />
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-20">
+        <section className="py-20 bg-gradient-to-b from-[#000047] to-[#000037]">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold mb-6">Book Freight Execution You Can Trust</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">Stop Uncertainty. Start Moving Freight Smarter.</p>
-            <Link
-              href="/contact"
-              className="bg-[#FF8000] text-white px-8 py-4 rounded-full font-bold inline-flex items-center hover:bg-[#FF9900] transition duration-300"
+            <motion.h2
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl font-bold mb-6 leading-tight tracking-wide text-[#FF8000]"
             >
-              Get Reliable Freight Execution
-              <ArrowRight className="ml-2" size={24} />
-            </Link>
+              Why One Stop Growth?
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed tracking-wide text-gray-300"
+            >
+              "Most carriers just move freight. We execute logistics with strategy."
+            </motion.p>
+            <motion.ul
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-lg mb-8 max-w-2xl mx-auto leading-relaxed tracking-wide text-gray-300 text-left"
+            >
+              <li className="flex items-center mb-2">
+                <CheckCircle className="text-[#FF8000] mr-2" size={20} />
+                <span>Consistent Execution – On-time, optimized, and broker-friendly.</span>
+              </li>
+              <li className="flex items-center mb-2">
+                <CheckCircle className="text-[#FF8000] mr-2" size={20} />
+                <span>Technology-Driven Transparency – Real-time tracking, compliance-first.</span>
+              </li>
+              <li className="flex items-center mb-2">
+                <CheckCircle className="text-[#FF8000] mr-2" size={20} />
+                <span>Reliable Broker Partnerships – No surprises, no excuses—just results.</span>
+              </li>
+            </motion.ul>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-[#FF8000] to-[#FFA500] text-[#000047] px-8 py-4 rounded-lg font-bold text-lg hover:from-[#FFA500] hover:to-[#FF8000] transition duration-300 min-w-[200px] h-[60px] shadow-[0_10px_20px_rgba(255,128,0,0.3)] hover:shadow-[0_15px_30px_rgba(255,128,0,0.5)]"
+              >
+                Book Reliable Freight Now
+                <ArrowRight className="ml-2" size={24} />
+              </Link>
+            </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="text-lg mt-8 text-center text-gray-300"
+            >
+              No wasted motion. No missed deadlines. Just disciplined execution.
+            </motion.p>
           </div>
         </section>
       </GradientBackground>

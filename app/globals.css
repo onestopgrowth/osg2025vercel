@@ -1,24 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --primary-blue: #003f7d;
-  --darker-blue: #003366;
-  --darkest-blue: #002347;
-  --flush-orange: #ff8000;
-  --bright-orange: #ff8e00;
-  --deep-orange: #fd7702;
-  --red-orange: #ff5003;
-  --japanese-laurel: #008000;
-  --primary-red: #ff0000;
+  --primary-blue: #2b4c7e;
+  --darker-blue: #1b325f;
+  --darkest-blue: #0f1c3f;
+  --corporate-orange: #e65c00;
+  --corporate-orange-hover: #cc5200;
+  --neutral-blue: #405d7d;
   --ceramic: #fdfffa;
 }
 
 body {
-  font-family: "Geist", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   background: linear-gradient(to right, var(--darkest-blue), var(--darker-blue));
   color: var(--ceramic);
 }
@@ -27,53 +24,64 @@ h1 {
   font-size: 3rem;
   line-height: 1.2;
   font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
 }
 
 h2 {
   font-size: 2.25rem;
-  line-height: 1.3;
+  line-height: 1.4;
   font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
 }
 
 h3 {
   font-size: 1.75rem;
-  line-height: 1.4;
+  line-height: 1.5;
   font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
 }
 
 h4 {
   font-size: 1.375rem;
   line-height: 1.5;
   font-weight: 500;
+  text-transform: capitalize;
 }
 
 h5 {
   font-size: 1.125rem;
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: 500;
+  text-transform: capitalize;
 }
 
 h6 {
   font-size: 1rem;
   line-height: 1.6;
   font-weight: 400;
+  text-transform: capitalize;
 }
 
 .body-large {
   font-size: 1.125rem;
-  line-height: 1.6;
+  line-height: 1.7;
   font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 .body-small {
   font-size: 1rem;
   line-height: 1.8;
   font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 .button-text {
   font-size: 0.875rem;
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -86,7 +94,7 @@ h6 {
 
 .btn {
   padding: 0.5rem 1rem;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 0.875rem;
   line-height: 1.5;
   font-weight: 700;
@@ -95,35 +103,34 @@ h6 {
 }
 
 .btn-primary {
-  background-color: var(--primary-blue);
+  background-color: var(--corporate-orange);
   color: var(--ceramic);
 }
 
 .btn-primary:hover {
-  background-color: var(--dark-blue);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--corporate-orange-hover);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary {
   background-color: transparent;
-  border: 2px solid var(--primary-blue);
-  color: var(--primary-blue);
-}
-
-.btn-secondary:hover {
-  background-color: var(--primary-blue);
+  border: 1px solid var(--neutral-blue);
   color: var(--ceramic);
 }
 
-.card {
-  background-color: var(--ceramic);
-  border: 1px solid #e6e6e6;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 6px;
+.btn-secondary:hover {
+  background-color: rgba(64, 93, 125, 0.1);
+  border-color: var(--corporate-orange);
 }
 
-/* Add these animations to your existing globals.css */
+.card {
+  background-color: var(--darkest-blue);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
 
+/* Preserve existing animations */
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
@@ -150,13 +157,13 @@ h6 {
 
 @keyframes glow {
   0% {
-    box-shadow: 0 0 5px rgba(255, 128, 0, 0.2);
+    box-shadow: 0 0 5px rgba(230, 92, 0, 0.2);
   }
   50% {
-    box-shadow: 0 0 20px rgba(255, 128, 0, 0.4);
+    box-shadow: 0 0 20px rgba(230, 92, 0, 0.4);
   }
   100% {
-    box-shadow: 0 0 5px rgba(255, 128, 0, 0.2);
+    box-shadow: 0 0 5px rgba(230, 92, 0, 0.2);
   }
 }
 
@@ -171,5 +178,23 @@ h6 {
 
 .glow-animate {
   animation: glow 3s ease-in-out infinite;
+}
+
+/* Corporate utility classes */
+.section-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 2rem 0;
+}
+
+.text-corporate {
+  color: var(--corporate-orange);
+}
+
+.bg-corporate {
+  background-color: var(--corporate-orange);
+}
+
+.hover-corporate:hover {
+  background-color: var(--corporate-orange-hover);
 }
 

@@ -4,7 +4,7 @@ import { Linkedin, Facebook, Twitter } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-r from-[#002347] to-[#003366] text-white py-12">
+    <footer className="bg-gradient-to-r from-[#000047] to-black text-white py-12">
       <div className="container mx-auto px-6">
         <div className="flex flex-col items-center text-center">
           {/* Logo */}
@@ -30,7 +30,7 @@ export default function Footer() {
               href="https://linkedin.com/company/onestopgrowth"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-[#FF8000] transition-colors"
+              className="text-white hover:text-[#E65C00] transition-colors"
             >
               <Linkedin className="h-6 w-6" />
               <span className="sr-only">LinkedIn</span>
@@ -39,7 +39,7 @@ export default function Footer() {
               href="https://www.facebook.com/OneStopGrowthLLC/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-[#FF8000] transition-colors"
+              className="text-white hover:text-[#E65C00] transition-colors"
             >
               <Facebook className="h-6 w-6" />
               <span className="sr-only">Facebook</span>
@@ -48,7 +48,7 @@ export default function Footer() {
               href="https://twitter.com/onestopgrowth"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-[#FF8000] transition-colors"
+              className="text-white hover:text-[#E65C00] transition-colors"
             >
               <Twitter className="h-6 w-6" />
               <span className="sr-only">Twitter</span>

@@ -4,10 +4,7 @@ import { useRef } from "react"
 import Image from "next/image"
 import { ChevronDown } from "lucide-react"
 import { motion } from "framer-motion"
-import { Inter } from "next/font/google"
 import { Button } from "@/components/ui/button"
-
-const inter = Inter({ subsets: ["latin"] })
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -33,7 +30,7 @@ export default function Hero() {
   }
 
   return (
-    <section ref={sectionRef} className={`relative h-screen ${inter.className}`}>
+    <section ref={sectionRef} className="relative h-screen">
       {/* Hero Image */}
       <div className="absolute inset-0">
         <Image
@@ -44,18 +41,18 @@ export default function Hero() {
           className="object-cover w-full h-full"
           priority
         />
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-[#000033]/60"></div>
+        {/* Updated overlay with more neutral blue */}
+        <div className="absolute inset-0 bg-[#1B325F]/60"></div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center h-full pt-[250px]">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center container mx-auto px-6">
         <motion.h1
           variants={textVariants}
           animate="animate"
-          className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white text-center mb-32"
+          className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-8"
         >
-          Our focus is on growth
+          Our Focus Is On Growth
         </motion.h1>
 
         <motion.div
@@ -65,9 +62,9 @@ export default function Hero() {
         >
           <Button
             onClick={scrollToNextSection}
-            className="bg-[#FF8000] hover:bg-[#FF8000]/90 text-white px-6 py-2 rounded-full text-lg font-medium transition-colors duration-300 flex items-center gap-2"
+            className="bg-[#E65C00] hover:bg-[#CC5200] text-white px-6 py-2 rounded-[4px] text-lg font-medium transition-all duration-300 flex items-center gap-2 shadow-sm hover:shadow-md"
           >
-            Get a clearer picture
+            Get a Clearer Picture
             <ChevronDown className="w-5 h-5" />
           </Button>
         </motion.div>
