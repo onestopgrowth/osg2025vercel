@@ -213,13 +213,13 @@ export default function About() {
                 across the globe, combining local grit with world-class expertise.
               </p>
             </div>
-            <div className="relative h-64 md:h-auto">
+            <div className="relative w-full aspect-square md:aspect-[4/3]">
               <Image
-                src="/placeholder.svg?height=400&width=600"
-                alt="Philadelphia Skyline"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design%20(13)-c8rpTziJeJ3DsgTqWSXFLSEGepepMC.png"
+                alt="Liberty Bell floating in space above Earth, symbolizing Philadelphia's global reach"
+                fill
+                className="rounded-lg object-contain"
+                priority
               />
             </div>
           </div>
@@ -227,8 +227,18 @@ export default function About() {
       </Section>
 
       {/* The Stoic Approach Section */}
-      <Section className="bg-gradient-to-b from-[#000] to-[#111]">
-        <div className="container mx-auto px-4">
+      <Section className="bg-gradient-to-b from-[#000] to-[#111] relative">
+        <div className="absolute inset-0">
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Stoic%20OSG-okpk2fghI2bUajhjCLfD52b7AMrj3g.png"
+            alt="Marcus Aurelius statue on horseback against an American flag background, symbolizing the fusion of classical wisdom with modern execution"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <SectionTitle>Our Philosophy: Stoic Execution in a Chaotic World</SectionTitle>
           <div className="grid md:grid-cols-2 gap-12">
             <div>
