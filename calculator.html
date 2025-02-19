@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Profitability Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Load Profitability Calculator</h2>
+
+    <label for="rpm">Enter Rate Per Mile ($):</label>
+    <input type="number" id="rpm" step="0.01" placeholder="Enter rate per mile (e.g., 2.40)">
+
+    <button onclick="calculateMiles()">Calculate</button>
+
+    <div class="result">
+        <h3>Miles Needed for Break-Even</h3>
+        <p><strong>Semi-Trucks:</strong> <span id="semiMiles">-</span> miles</p>
+        <p><strong>Box Trucks (CDL & Non-CDL):</strong> <span id="boxMiles">-</span> miles</p>
+    </div>
+</div>
+
+<script>
+    function calculateMiles() {
+        var rpm = parseFloat(document.getElementById("rpm").value);
+
+        if (isNaN(rpm) || rpm <= 0) {
+            alert("Please enter a valid rate per mile.");
+            return;
+        }
+
+        var semiFixedCost = 30000;  // Fixed cost per semi-truck
+        var boxFixedCost = 19743.02; // Fixed cost per box truck
+
+        var semiMiles = (semiFixedCost / rpm).toFixed(2);
+        var boxMiles = (boxFixedCost / rpm).toFixed(2);
+
+        document.getElementById("semiMiles").textContent = semiMiles;
+        document.getElementById("boxMiles").textContent = boxMiles;
+    }
+</script>
+
+</body>
+</html>
