@@ -160,55 +160,6 @@ const faqs = [
       </div>
     ),
   },
-  {
-    question: "How can your business development services help my company grow?",
-    answer: (
-      <div className="space-y-2">
-        <p>Our business development services are designed to drive growth and efficiency:</p>
-        <ul className="list-disc pl-5 space-y-2">
-          <li>
-            <strong>Targeted Lead Generation:</strong> We use data-driven strategies to identify and attract
-            high-quality leads that are most likely to convert.
-          </li>
-          <li>
-            <strong>Sales Process Optimization:</strong> We analyze and refine your sales funnel to increase conversion
-            rates and shorten the sales cycle.
-          </li>
-          <li>
-            <strong>CRM Implementation and Management:</strong> We help you leverage CRM tools to better manage customer
-            relationships and streamline your sales processes.
-          </li>
-          <li>
-            <strong>Market Expansion Strategies:</strong> Our team assists in identifying new market opportunities and
-            developing strategies to enter these markets successfully.
-          </li>
-          <li>
-            <strong>Performance Metrics and Analytics:</strong> We implement robust tracking and reporting systems to
-            measure the effectiveness of your business development efforts and guide data-driven decision-making.
-          </li>
-        </ul>
-      </div>
-    ),
-  },
-  {
-    question: "How can I learn more about your services?",
-    answer: (
-      <p>
-        The best way to learn more is to give us a call! We'd be happy to discuss your specific needs and how we can
-        help. We can also provide references upon request, depending on the project type (please note that most of our
-        projects are under NDAs).
-      </p>
-    ),
-  },
-  {
-    question: "Who should I contact for more information?",
-    answer: (
-      <p>
-        You can reach out directly to our CEO, <strong>Michael Morris</strong>, at <strong>215-219-3149</strong>. He'll
-        be happy to discuss how One Stop Growth can help your business thrive.
-      </p>
-    ),
-  },
 ]
 
 export default function FAQ() {
@@ -219,11 +170,13 @@ export default function FAQ() {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-white">Frequently Asked Questions</h2>
         </div>
 
-        <Accordion type="single" collapsible className="w-full max-w-3xl mx-auto">
+        <Accordion type="single" collapsible className="w-full max-w-3xl mx-auto space-y-4 [&>*]:border-orange-500">
           {faqs.map((faq, index) => (
             <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-left text-white">{faq.question}</AccordionTrigger>
-              <AccordionContent className="text-secondary">{faq.answer}</AccordionContent>
+              <AccordionTrigger className="text-left text-sm font-medium text-[#000047] bg-[#FF8000] p-4 rounded-lg shadow-md hover:bg-[#FFA500] transition-colors duration-300">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-white bg-[#000037] p-4 rounded-b-lg">{faq.answer}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>

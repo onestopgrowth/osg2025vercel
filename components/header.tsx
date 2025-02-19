@@ -14,11 +14,10 @@ const navItems = [
       { name: "Software Development", href: "/services/software-development" },
       { name: "IT Infrastructure & Cybersecurity", href: "/services/it-infrastructure-cybersecurity" },
       { name: "Business Development", href: "/services/business-development" },
-      { name: "Logistics & Freight Hauling", href: "/services/logistics-freight-hauling" },
     ],
   },
+  { name: "Size Matters - We Deliver", href: "/services/logistics-freight-hauling" },
   { name: "About Us", href: "/about" },
-  { name: "Contact Us", href: "/contact" },
 ]
 
 export default function Header() {
@@ -67,13 +66,22 @@ export default function Header() {
             <nav className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
                 <div key={item.name} className="relative group">
-                  <button
-                    className="text-white hover:text-[#FF8000] transition-colors text-lg font-medium flex items-center"
-                    onClick={() => handleSubmenuToggle(item.name)}
-                  >
-                    {item.name}
-                    {item.subItems && <ChevronDown className="ml-1 h-4 w-4" />}
-                  </button>
+                  {item.subItems ? (
+                    <button
+                      className="text-white hover:text-[#FF8000] transition-colors text-lg font-medium flex items-center"
+                      onClick={() => handleSubmenuToggle(item.name)}
+                    >
+                      {item.name}
+                      <ChevronDown className="ml-1 h-4 w-4" />
+                    </button>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="text-white hover:text-[#FF8000] transition-colors text-lg font-medium"
+                    >
+                      {item.name}
+                    </Link>
+                  )}
                   {item.subItems && (
                     <div className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-[#000047] ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                       <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">

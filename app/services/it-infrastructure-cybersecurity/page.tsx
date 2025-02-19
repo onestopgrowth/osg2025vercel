@@ -60,7 +60,7 @@ export default function ITInfrastructureCybersecurity() {
       <Header />
 
       {/* 1. Header Section */}
-      <Section className="relative h-[70vh] flex items-center">
+      <Section className="relative h-[50vh] flex items-center">
         <Image
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/One%20Stop%20Growth%20Infrastructure.jpg-eKujYBHwnA5SvcXy3mZkwIpoRKCjHT.jpeg"
           alt="Modern data center hallway with illuminated server racks and code display, representing the fusion of physical and digital infrastructure"
@@ -69,7 +69,10 @@ export default function ITInfrastructureCybersecurity() {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#000047] to-black opacity-80" />
-        <div className="container mx-auto px-6 relative z-10">
+      </Section>
+
+      <Section className="bg-[#000047] py-16">
+        <div className="container mx-auto px-6">
           <h1 className="text-3xl md:text-4xl font-bold mb-6">
             Resilient Systems. Secure Infrastructure. Seamless Execution.
           </h1>

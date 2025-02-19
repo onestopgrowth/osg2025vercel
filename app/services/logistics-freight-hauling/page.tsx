@@ -107,7 +107,7 @@ export default function LogisticsFreightHauling() {
               transition={{ duration: 1 }}
               className="text-4xl md:text-5xl font-bold mb-6 text-white"
             >
-              Freight Hauling – Execution Without Excuses
+              Precision Freight Execution – Trusted by Brokers & Shippers
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -139,7 +139,7 @@ export default function LogisticsFreightHauling() {
               transition={{ duration: 0.5 }}
               className="text-3xl font-bold mb-12 leading-tight tracking-wide text-center text-[#FF8000]"
             >
-              The Problem with Traditional Freight Logistics
+              The Challenges of Freight Logistics & How We Solve Them
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, x: -50 }}
@@ -262,10 +262,15 @@ export default function LogisticsFreightHauling() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="text-lg mt-8 text-center text-gray-300"
+              className="text-lg mt-8 text-center"
             >
-              Freight should never be a gamble. We eliminate inefficiencies, execute with precision, and keep brokers in
-              the loop—always.
+              <span className="text-[#FF8000]">
+                Curious about what makes a load profitable? Use our free Load Profitability Calculator to analyze rates
+                and make informed decisions.{" "}
+                <Link href="/calculator" className="hover:underline">
+                  Try it now →
+                </Link>
+              </span>
             </motion.p>
           </div>
         </section>
@@ -291,19 +296,42 @@ export default function LogisticsFreightHauling() {
             </motion.p>
             <div className="max-w-2xl mx-auto">
               <TimelineItem
-                date="August 29, 2024"
-                title="DOT Active Since"
-                description="Our journey began with the activation of our DOT authority, marking our commitment to excellence in freight logistics."
+                date="🚛 Roadside Inspection"
+                title="Compliance Verified"
+                description="Our fleet has passed one roadside inspection, ensuring compliance with FMCSA regulations. All documentation has been submitted for our new entrant safety audit."
               />
               <TimelineItem
-                date="February 28, 2025"
-                title="Full Broker-Ready Status"
-                description="By this date, we will have cleared FMCSA's New Entrant Safety Audit with full compliance, built a strong operating history with no violations or setbacks, and met or exceeded the 6-month authority standard required by top brokers and load boards."
+                date="🛡️ Drug & Alcohol Compliance"
+                title="Safety First"
+                description={
+                  <>
+                    We partner with{" "}
+                    <Link
+                      href="https://gradientway.com"
+                      className="text-[#FF8000] hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Gradient Way
+                    </Link>{" "}
+                    for Drug & Alcohol Program Management & Clearinghouse Compliance. Every driver is screened and
+                    monitored to meet DOT safety standards.
+                  </>
+                }
               />
               <TimelineItem
-                date="Ongoing"
-                title="Transparency and Compliance"
-                description="We operate with full transparency so brokers know exactly what they're getting—a carrier that's disciplined, compliant, and built for execution."
+                date="📊 Transparency & Compliance"
+                title="Building Trust"
+                description={
+                  <>
+                    Brokers and shippers can trust that we run a fully compliant and accountable operation. We are
+                    focused on building dedicated lanes for our trucks instead of relying solely on spot rates. Our goal
+                    is to meet our margins while remaining fair with brokers to create long-term partnerships.{" "}
+                    <Link href="/calculator" className="text-[#FF8000] hover:underline">
+                      Run a Profitability Check →
+                    </Link>
+                  </>
+                }
               />
             </div>
           </div>
@@ -387,7 +415,7 @@ export default function LogisticsFreightHauling() {
                 href="/contact"
                 className="inline-flex items-center justify-center bg-gradient-to-r from-[#FF8000] to-[#FFA500] text-[#000047] px-8 py-4 rounded-lg font-bold text-lg hover:from-[#FFA500] hover:to-[#FF8000] transition duration-300 min-w-[200px] h-[60px] shadow-[0_10px_20px_rgba(255,128,0,0.3)] hover:shadow-[0_15px_30px_rgba(255,128,0,0.5)]"
               >
-                Book Reliable Freight Now
+                Contact Us
                 <ArrowRight className="ml-2" size={24} />
               </Link>
             </motion.div>
@@ -397,7 +425,10 @@ export default function LogisticsFreightHauling() {
               transition={{ duration: 0.5, delay: 0.6 }}
               className="text-lg mt-8 text-center text-gray-300"
             >
-              No wasted motion. No missed deadlines. Just disciplined execution.
+              We execute with precision, ensuring both carriers and brokers succeed.{" "}
+              <Link href="/calculator" className="text-[#FF8000] hover:underline">
+                Get a real-time look at profitability with our Load Profitability Calculator →
+              </Link>
             </motion.p>
           </div>
         </section>

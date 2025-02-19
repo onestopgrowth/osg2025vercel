@@ -1,34 +1,96 @@
+"use client"
+
+import type React from "react"
+
+import { useState } from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import styles from "./contact.module.css"
 
 export default function Contact() {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  const [message, setMessage] = useState("")
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const mailtoLink = `mailto:get@onestopgrowth.com?subject=Contact Form Submission&body=Name: ${name}%0D%0AEmail: ${email}%0D%0APhone: ${phone}%0D%0AMessage: ${message}`
+    window.location.href = mailtoLink
+  }
+
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className={styles.pageContainer}>
       <Header />
-      <div className="container mx-auto px-6 py-24">
-        <h1 className="text-4xl font-bold mb-8">Contact Us</h1>
-        <p className="text-xl mb-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>
-        <form className="max-w-md">
-          <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-bold mb-2">
+      <div className={styles.container}>
+        <h1 className={styles.title}>Contact Us</h1>
+        <p className={styles.subtitle}>
+          Go ahead and fill out the form... you know you want to. We promise we won't use your info for world domination
+          (maybe).
+        </p>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.inputGroup}>
+            <label htmlFor="name" className={styles.label}>
               Name
             </label>
-            <input type="text" id="name" name="name" className="w-full p-2 bg-[#000047] rounded" />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className={styles.input}
+              required
+              placeholder="Your name here (we won't tell)"
+            />
           </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-bold mb-2">
+          <div className={styles.inputGroup}>
+            <label htmlFor="email" className={styles.label}>
               Email
             </label>
-            <input type="email" id="email" name="email" className="w-full p-2 bg-[#000047] rounded" />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={styles.input}
+              required
+              placeholder="your@email.com (no spam, we promise)"
+            />
           </div>
-          <div className="mb-4">
-            <label htmlFor="message" className="block text-sm font-bold mb-2">
+          <div className={styles.inputGroup}>
+            <label htmlFor="phone" className={styles.label}>
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className={styles.input}
+              required
+              placeholder="555-123-4567 (for important cat videos only)"
+            />
+          </div>
+          <div className={styles.inputGroup}>
+            <label htmlFor="message" className={styles.label}>
               Message
             </label>
-            <textarea id="message" name="message" rows={4} className="w-full p-2 bg-[#000047] rounded"></textarea>
+            <textarea
+              id="message"
+              name="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              rows={4}
+              className={styles.textarea}
+              required
+              placeholder="Tell us your deepest secrets... or just what you need help with"
+            ></textarea>
           </div>
-          <button type="submit" className="bg-[#FF8000] text-white px-4 py-2 rounded hover:bg-[#FF9900]">
-            Send Message
+          <button type="submit" className={`${styles.button} bg-[#FF8000] hover:bg-[#FF9900]`}>
+            Send Message (No turning back now!)
           </button>
         </form>
       </div>
