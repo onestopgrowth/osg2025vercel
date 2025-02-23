@@ -11,6 +11,9 @@ import { Card } from "@/components/ui/card"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 
+// Add DOTStatus to the imports
+import DOTStatus from "@/components/DOTStatus"
+
 const GradientBackground = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -127,6 +130,9 @@ export default function LogisticsFreightHauling() {
               is handled with intent, every mile is optimized, and every broker gets the reliability they need. No
               delays. No excuses. Just execution.
             </motion.p>
+
+            {/* Add the DOTStatus component here */}
+            <DOTStatus />
           </div>
         </section>
 
