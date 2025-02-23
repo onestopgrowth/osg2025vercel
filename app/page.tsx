@@ -8,10 +8,11 @@ import Stats from "../components/stats"
 import FAQ from "../components/faq"
 import Contact from "../components/contact"
 import Footer from "../components/footer"
+import FreightModal from "../components/FreightModal"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-black text-white relative">
       <Header />
       <Hero />
       <WhatIsOneStopGrowth />
@@ -22,6 +23,7 @@ export default function Home() {
       <FAQ />
       <Contact />
       <Footer />
+      <FreightModal />
     </main>
   )
 }

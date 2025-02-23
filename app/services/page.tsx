@@ -38,9 +38,12 @@ const ServiceSection = ({
       className="py-20 relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-[#000047] to-black opacity-90" />
-      <div
-        className={`container mx-auto px-6 relative z-10 flex flex-col ${isReversed ? "md:flex-row-reverse" : "md:flex-row"} items-center gap-12`}
-      >
+      <div className={`container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12`}>
+        <div className="w-full md:w-1/2">
+          <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl">
+            <Image src={imageUrl || "/placeholder.svg"} alt={title} fill className="object-cover" />
+          </div>
+        </div>
         <div className="w-full md:w-1/2 space-y-6">
           <div className="flex items-center gap-4">
             <div className="p-3 bg-[#FF8000] rounded-lg">{icon}</div>
@@ -51,11 +54,6 @@ const ServiceSection = ({
             {linkText}
             <ArrowRight className="ml-2" size={16} />
           </Link>
-        </div>
-        <div className="w-full md:w-1/2">
-          <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl">
-            <Image src={imageUrl || "/placeholder.svg"} alt={title} fill className="object-cover" />
-          </div>
         </div>
       </div>
     </motion.div>
@@ -87,13 +85,40 @@ export default function Services() {
           transition={{ duration: 0.8 }}
           className="container mx-auto px-6 relative z-10 text-center"
         >
-          <h1 className="text-2xl md:text-3xl font-bold mb-6">Systems. Efficiency. Execution.</h1>
-          <p className="text-base mb-8 max-w-3xl mx-auto mt-12 text-center">
+          <h1 className="text-3xl md:text-4xl font-bold mb-6">
+            {["Systems.", "Efficiency.", "Execution."].map((word, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.8,
+                  delay: index * 0.3,
+                  ease: [0.6, -0.05, 0.01, 0.99],
+                }}
+                className="inline-block mr-2"
+              >
+                {word}
+              </motion.span>
+            ))}
+          </h1>
+        </motion.div>
+      </section>
+
+      {/* Introduction Section */}
+      <section className="py-16 bg-[#000037]">
+        <div className="container mx-auto px-6">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-lg mb-8 max-w-3xl mx-auto text-center text-gray-300"
+          >
             At One Stop Growth, we don't provide fragmented solutions. We build integrated systems that drive
             sustainable growth. Each of our core services is designed to work in unison, ensuring no inefficiencies, no
             waste—just results.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
       </section>
 
       {/* Service Sections */}

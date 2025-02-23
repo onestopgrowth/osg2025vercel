@@ -8,15 +8,15 @@ import { Button } from "@/components/ui/button"
 
 const navItems = [
   {
-    name: "Our Services",
+    name: "Business Services",
     href: "/services",
     subItems: [
       { name: "Software Development", href: "/services/software-development" },
       { name: "IT Infrastructure & Cybersecurity", href: "/services/it-infrastructure-cybersecurity" },
       { name: "Business Development", href: "/services/business-development" },
+      { name: "Freight Hauling and Logistics", href: "/services/freight-hauling-and-logistics" },
     ],
   },
-  { name: "Size Matters - We Deliver", href: "/services/logistics-freight-hauling" },
   { name: "About Us", href: "/about" },
 ]
 
@@ -67,13 +67,20 @@ export default function Header() {
               {navItems.map((item) => (
                 <div key={item.name} className="relative group">
                   {item.subItems ? (
-                    <button
-                      className="text-white hover:text-[#FF8000] transition-colors text-lg font-medium flex items-center"
-                      onClick={() => handleSubmenuToggle(item.name)}
-                    >
-                      {item.name}
-                      <ChevronDown className="ml-1 h-4 w-4" />
-                    </button>
+                    <div className="flex items-center">
+                      <Link
+                        href={item.href}
+                        className="text-white hover:text-[#FF8000] transition-colors text-lg font-medium"
+                      >
+                        {item.name}
+                      </Link>
+                      <button
+                        className="text-white hover:text-[#FF8000] transition-colors ml-1"
+                        onClick={() => handleSubmenuToggle(item.name)}
+                      >
+                        <ChevronDown className="h-4 w-4" />
+                      </button>
+                    </div>
                   ) : (
                     <Link
                       href={item.href}
