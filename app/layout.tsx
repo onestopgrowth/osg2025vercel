@@ -1,9 +1,14 @@
 import "./globals.css"
+import { Roboto } from "next/font/google"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import type React from "react" // Added import for React
+import type React from "react"
 
-const inter = Inter({ subsets: ["latin"] })
+const roboto = Roboto({
+  weight: ["300", "400", "500", "700", "900"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto",
+})
 
 export const metadata: Metadata = {
   title: "One Stop Growth - Technology Meets Business Growth",
@@ -17,11 +22,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <head>
-        <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet" />
-      </head>
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={`${roboto.variable} font-sans`}>
+      <body>{children}</body>
     </html>
   )
 }

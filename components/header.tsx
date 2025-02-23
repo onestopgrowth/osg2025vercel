@@ -42,7 +42,7 @@ export default function Header() {
     <>
       <div className="fixed w-full bg-black text-white z-50">
         <div className="container mx-auto px-6">
-          <div className="flex justify-end py-1 text-sm">
+          <div className="flex justify-end py-1 text-sm font-light">
             <span>DOT: 4279426 | MC: 1663270 | SCAC: ONRT</span>
           </div>
         </div>
@@ -132,7 +132,9 @@ export default function Header() {
                       >
                         {item.name}
                         <ChevronDown
-                          className={`ml-1 h-4 w-4 transform transition-transform ${activeSubmenu === item.name ? "rotate-180" : ""}`}
+                          className={`ml-1 h-4 w-4 transform transition-transform ${
+                            activeSubmenu === item.name ? "rotate-180" : ""
+                          }`}
                         />
                       </button>
                       {activeSubmenu === item.name && (
@@ -141,7 +143,7 @@ export default function Header() {
                             <li key={subItem.name}>
                               <Link
                                 href={subItem.href}
-                                className="text-white hover:text-[#FF8000] transition-colors block py-1 text-base"
+                                className="text-white hover:text-[#FF8000] transition-colors block py-1 text-base font-regular"
                                 onClick={() => setMobileMenuOpen(false)}
                               >
                                 {subItem.name}
