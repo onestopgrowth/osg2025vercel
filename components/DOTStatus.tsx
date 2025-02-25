@@ -20,7 +20,7 @@ export default function DOTStatus() {
   const dotActiveDate = new Date("2024-08-29")
 
   // Calculate days active
-  const daysActive = Math.floor((currentDate.getTime() - dotActiveDate.getTime()) / (1000 * 60 * 60 * 24))
+  const daysActive = Math.floor((currentDate.getTime() - dotActiveDate.getTime()) / (1000 * 60 * 60 * 24)) -1;
 
   // Calculate days remaining (180 days total for new entrant period)
   const daysRemaining = 180 - daysActive
@@ -126,4 +126,6 @@ export default function DOTStatus() {
     </div>
   )
 }
+
+
 
