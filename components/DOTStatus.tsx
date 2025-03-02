@@ -20,7 +20,7 @@ export default function DOTStatus() {
   const dotActiveDate = new Date("2024-08-29")
 
   // Calculate days active
-  const daysActive = Math.floor((currentDate.getTime() - dotActiveDate.getTime()) / (1000 * 60 * 60 * 24))
+  const daysActive = Math.floor((currentDate.getTime() - dotActiveDate.getTime()) / (1000 * 60 * 60 * 24)) - 1
 
   // Calculate days remaining (180 days total for new entrant period)
   const daysRemaining = 180 - daysActive
@@ -36,14 +36,21 @@ export default function DOTStatus() {
 
   return (
     <div className="max-w-3xl mx-auto my-8">
-      {/* Compliance Preface */}
+      {/* Updated Compliance Preface */}
       <div className="bg-blue-900 text-white p-4 rounded-lg mb-4">
-        <p className="text-lg font-semibold">
+        <p className="text-lg font-semibold mb-2">
           Many brokers with compliance departments prefer carriers with an MC age of 6+ or 12+ months before onboarding.
+          While this isn't always a practical measure of service quality, it remains an external factor beyond our
+          control.
         </p>
-        <p className="text-sm text-white mt-2">
-          While this isn't always practical in evaluating service quality, it's an external factor beyond our control.
-          <span className="font-semibold"> Here's where we stand:</span>
+        <p className="text-lg font-semibold mb-2">Here's where we stand:</p>
+        <p className="text-md mb-2">
+          At One Stop Growth, we don't just move freight—we build the technology that moves the industry forward.
+        </p>
+        <p className="text-md">
+          As a solutions provider at the forefront of logistics innovation, we're working on a next-generation freight
+          management platform designed to eliminate fraud, automate payments, and optimize load efficiency with true
+          AI-driven insights.
         </p>
       </div>
 

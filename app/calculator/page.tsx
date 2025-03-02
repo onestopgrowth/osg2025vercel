@@ -16,6 +16,54 @@ export default function KnowYourWorthPage() {
   const [drops, setDrops] = useState("")
   const [results, setResults] = useState<string | null>(null)
 
+  // Add DOT status information
+  const dotGrantDate = new Date("2024-08-30")
+  const dotActiveDate = new Date("2024-08-29")
+  const currentDate = new Date()
+
+  // Calculate days active
+  const calculateDaysActive = (current: Date, active: Date) => {
+    const currentNormalized = new Date(current)
+    currentNormalized.setHours(0, 0, 0, 0)
+
+    const todayUTC = Date.UTC(
+      currentNormalized.getFullYear(),
+      currentNormalized.getMonth(),
+      currentNormalized.getDate(),
+    )
+    const dotActiveUTC = Date.UTC(active.getFullYear(), active.getMonth(), active.getDate())
+
+    return Math.floor((todayUTC - dotActiveUTC) / (1000 * 60 * 60 * 24))
+  }
+
+  const daysActive = calculateDaysActive(currentDate, dotActiveDate)
+  const daysRemaining180 = Math.max(180 - daysActive, 0)
+
+  // Add DOT status display at the top of the form
+  const dotStatusSection = `
+    <div className="bg-[#1a237e] text-white p-6 rounded-lg shadow-md mb-8">
+      <h3 className="text-2xl font-bold text-[#ff8c00] mb-6">DOT Authority Status</h3>
+      <div className="space-y-4">
+        <div className="flex justify-between">
+          <span>DOT Grant Date:</span>
+          <span className="font-bold">August 30, 2024</span>
+        </div>
+        <div className="flex justify-between">
+          <span>DOT Active Since:</span>
+          <span className="font-bold">August 29, 2024</span>
+        </div>
+        <div className="flex justify-between">
+          <span>DOT Active Days:</span>
+          <span className="font-bold">${daysActive} days</span>
+        </div>
+        <div className="flex justify-between">
+          <span>Days Remaining:</span>
+          <span className="font-bold">${daysRemaining180} days</span>
+        </div>
+      </div>
+    </div>
+  `
+
   const calculateResults = () => {
     const totalPayValue = Number.parseFloat(totalPay) || 0
     const loadedMilesValue = Number.parseFloat(loadedMiles) || 0
@@ -176,6 +224,7 @@ export default function KnowYourWorthPage() {
       <Header />
       <div className={styles.container}>
         <h1>Know Your Worth Tool</h1>
+        <div dangerouslySetInnerHTML={{ __html: dotStatusSection }} />
 
         <div className={styles.inputGroup}>
           <label htmlFor="vehicleType">Vehicle Type:</label>

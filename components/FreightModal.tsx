@@ -59,7 +59,7 @@ export default function FreightModal() {
           className="fixed bottom-4 right-4 bg-[#FF8000] text-white px-4 py-2 rounded-full shadow-lg hover:bg-[#FF9900] transition-colors duration-300 z-50"
         >
           <FontAwesomeIcon icon={faTruck} className="mr-2" />
-          Are You A Freight Broker? Click here.
+          Looking for a carrier? Click here.
         </button>
       )}
 
@@ -81,10 +81,10 @@ export default function FreightModal() {
             </div>
             <p className="text-lg text-gray-600 leading-relaxed">On-time. Optimized. No Excuses. Let's move.</p>
             <Link
-              href="/interstate-freight-hauling"
+              href="/interstate-freight"
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-md shadow-md w-full text-center block transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg"
             >
-              View Interstate Freight Hauling
+              View Interstate Freight
             </Link>
           </div>
         </div>

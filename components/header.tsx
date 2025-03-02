@@ -14,7 +14,7 @@ const navItems = [
       { name: "Software Development", href: "/services/software-development" },
       { name: "IT Infrastructure & Cybersecurity", href: "/services/it-infrastructure-cybersecurity" },
       { name: "Business Development", href: "/services/business-development" },
-      { name: "Freight Hauling and Logistics", href: "/services/freight-hauling-and-logistics" },
+      { name: "Logistics & Freight Hauling", href: "/interstate-freight" },
     ],
   },
   { name: "About Us", href: "/about" },

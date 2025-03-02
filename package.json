@@ -65,9 +65,9 @@
     "@tsparticles/react": "latest",
     "@tsparticles/slim": "latest",
     "react-intersection-observer": "latest",
+    "react-icons": "latest",
     "@fortawesome/react-fontawesome": "latest",
-    "@fortawesome/free-solid-svg-icons": "latest",
-    "react-icons": "latest"
+    "@fortawesome/free-solid-svg-icons": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",
