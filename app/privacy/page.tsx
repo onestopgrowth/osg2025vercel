@@ -112,6 +112,45 @@ export default function PrivacyPolicy() {
             </section>
 
             <section>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">SMS Terms & Conditions</h2>
+
+              <h3 className="text-xl font-semibold mt-6 mb-2">Product Description</h3>
+              <p className="mb-4">
+                By providing your mobile phone number, you consent to receive SMS messages from One Stop Growth LLC
+                related to freight services, delivery updates, and account notifications.
+              </p>
+
+              <h3 className="text-xl font-semibold mt-6 mb-2">Message Frequency</h3>
+              <p className="mb-4">
+                Message frequency may vary depending on your interaction with our services and delivery status updates.
+              </p>
+
+              <h3 className="text-xl font-semibold mt-6 mb-2">Message and Data Rates</h3>
+              <p className="mb-4">Standard message and data rates may apply based on your wireless carrier plan.</p>
+
+              <h3 className="text-xl font-semibold mt-6 mb-2">Opting Out</h3>
+              <p className="mb-4">
+                You may opt out of receiving SMS messages at any time by replying with "STOP" to any SMS message you
+                receive from us. After opting out, you will receive a confirmation message, and we will cease sending
+                SMS messages to your number.
+              </p>
+
+              <h3 className="text-xl font-semibold mt-6 mb-2">Help and Support</h3>
+              <p className="mb-4">
+                If you need assistance or have questions about our SMS service, reply with "HELP" to any SMS message you
+                receive, or contact our customer support team at dispatch@onestopgrowth.com or 800-674-3599.
+              </p>
+
+              <h3 className="text-xl font-semibold mt-6 mb-2">Privacy Policy</h3>
+              <p className="mb-4">
+                Your phone number will be handled in accordance with our Privacy Policy. No mobile information will be
+                shared with third parties/affiliates for marketing/promotional purposes. All the above categories
+                exclude text messaging originator opt-in data and consent; this information will not be shared with any
+                third parties.
+              </p>
+            </section>
+
+            <section>
               <h2 className="text-2xl md:text-3xl font-bold mb-4">Contact Us</h2>
               <p>If you have any questions about this privacy policy or our privacy practices, please contact us at:</p>
               <div className="mt-4">
