@@ -24,4 +24,3 @@ body {
 .glass-effect {
   @apply bg-white/10 backdrop-filter backdrop-blur-lg;
 }
-

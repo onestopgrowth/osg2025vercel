@@ -42,4 +42,3 @@ export default function ServiceCard({ code, name, color, details }: ServiceCardP
     </div>
   )
 }
-

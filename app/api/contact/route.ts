@@ -13,4 +13,3 @@ export async function POST(request: Request) {
   // For now, we'll just log the data and return a success response
   return NextResponse.json({ message: "Form submitted successfully" })
 }
-

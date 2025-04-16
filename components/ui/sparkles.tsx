@@ -28,4 +28,3 @@ export const Sparkles = ({ children }: SparklesProps) => {
     </motion.span>
   )
 }
-

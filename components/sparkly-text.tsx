@@ -113,4 +113,3 @@ export default function AtomicText({ children, color = "#FF8E00", numberOfPartic
     </div>
   )
 }
-
