@@ -89,6 +89,12 @@
   transform: scale(1.03);
 }
 
+.checkboxLabel {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #f8f8f8;
+}
+
 @media (max-width: 768px) {
   .container {
     margin: 80px auto 20px;

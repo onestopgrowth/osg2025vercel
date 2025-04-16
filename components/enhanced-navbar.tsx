@@ -51,15 +51,26 @@ export default function EnhancedNavbar() {
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <div key={item.name} className="relative group">
-                <motion.button
-                  className="text-white hover:text-[#FF8000] transition-colors text-lg font-medium flex items-center"
-                  onClick={() => handleSubmenuToggle(item.name)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {item.name}
-                  {item.subItems && <ChevronDown className="ml-1 h-4 w-4" />}
-                </motion.button>
+                {item.subItems ? (
+                  <motion.button
+                    className="text-white hover:text-[#FF8000] transition-colors text-lg font-medium flex items-center"
+                    onClick={() => handleSubmenuToggle(item.name)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {item.name}
+                    {item.subItems && <ChevronDown className="ml-1 h-4 w-4" />}
+                  </motion.button>
+                ) : (
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Link
+                      href={item.href}
+                      className="text-white hover:text-[#FF8000] transition-colors text-lg font-medium flex items-center"
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.div>
+                )}
                 {item.subItems && (
                   <motion.div
                     className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
