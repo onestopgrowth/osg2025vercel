@@ -18,7 +18,7 @@ const GradientBackground = ({ children }: { children: React.ReactNode }) => {
     offset: ["start start", "end start"],
   })
 
-  const backgroundColor = useTransform(scrollYProgress, [0, 0.5, 1], ["#000047", "#000037", "#000027"])
+  const backgroundColor = useTransform(scrollYProgress, [0, 0.5, 1], ["#ffffff", "#f8f8f8", "#f0f0f0"])
 
   return (
     <motion.div ref={ref} style={{ backgroundColor }}>
@@ -33,11 +33,11 @@ const FeatureCard = ({
   description,
 }: { icon: React.ElementType; title: string; description: string }) => (
   <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }}>
-    <Card className="bg-gradient-to-br from-[#000047] to-[#0000FF] p-6 rounded-lg shadow-[0_10px_20px_rgba(0,0,255,0.2)] hover:shadow-[0_20px_30px_rgba(0,0,255,0.3)] transition-all duration-300 border-0 overflow-hidden relative">
-      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[rgba(255,128,0,0.1)] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+    <Card className="bg-white p-6 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_30px_rgba(0,0,0,0.15)] transition-all duration-300 border border-gray-100 overflow-hidden relative">
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[rgba(255,128,0,0.05)] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
       <Icon className="w-12 h-12 text-[#FF8000] mb-4 relative z-10" />
-      <h3 className="text-xl font-bold mb-2 leading-tight tracking-wide text-white relative z-10">{title}</h3>
-      <p className="text-sm text-gray-300 leading-relaxed tracking-wide relative z-10">{description}</p>
+      <h3 className="text-xl font-bold mb-2 leading-tight tracking-wide text-gray-900 relative z-10">{title}</h3>
+      <p className="text-sm text-gray-700 leading-relaxed tracking-wide relative z-10">{description}</p>
     </Card>
   </motion.div>
 )
@@ -53,11 +53,11 @@ const TimelineItem = ({ date, title, description }: { date: string; title: strin
       <div className="w-4 h-4 bg-[#FF8000] rounded-full shadow-[0_0_10px_#FF8000]"></div>
       <div className="w-0.5 h-full bg-gradient-to-b from-[#FF8000] to-transparent"></div>
     </div>
-    <div className="bg-gradient-to-r from-[#000047] to-[#0000FF] p-6 rounded-lg shadow-[0_10px_20px_rgba(0,0,255,0.2)] relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[rgba(255,128,0,0.1)] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+    <div className="bg-white p-6 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.1)] relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[rgba(255,128,0,0.05)] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
       <p className="text-sm text-[#FF8000] mb-1 font-bold relative z-10">{date}</p>
-      <h3 className="text-lg font-bold mb-2 leading-tight tracking-wide text-white relative z-10">{title}</h3>
-      <p className="text-gray-300 leading-relaxed tracking-wide relative z-10">{description}</p>
+      <h3 className="text-lg font-bold mb-2 leading-tight tracking-wide text-gray-900 relative z-10">{title}</h3>
+      <p className="text-gray-700 leading-relaxed tracking-wide relative z-10">{description}</p>
     </div>
   </motion.div>
 )
@@ -70,42 +70,42 @@ const ProcessStep = ({ number, title, description }: { number: number; title: st
     transition={{ duration: 0.5 }}
     viewport={{ once: true }}
   >
-    <div className="bg-gradient-to-br from-[#FF8000] to-[#FFA500] text-[#000047] rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0 shadow-[0_0_20px_rgba(255,128,0,0.5)]">
+    <div className="bg-gradient-to-br from-[#FF8000] to-[#FFA500] text-white rounded-full w-12 h-12 flex items-center justify-center mr-4 flex-shrink-0 shadow-[0_0_20px_rgba(255,128,0,0.5)]">
       <span className="text-xl font-bold">{number}</span>
     </div>
-    <div className="bg-gradient-to-r from-[#000047] to-[#0000FF] p-6 rounded-lg shadow-[0_10px_20px_rgba(0,0,255,0.2)] flex-grow relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[rgba(255,128,0,0.1)] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+    <div className="bg-white p-6 rounded-lg shadow-[0_10px_20px_rgba(0,0,0,0.1)] flex-grow relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[rgba(255,128,0,0.05)] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
       <h3 className="text-xl font-bold mb-2 leading-tight tracking-wide text-[#FF8000] relative z-10">{title}</h3>
-      <p className="text-gray-300 leading-relaxed tracking-wide relative z-10">{description}</p>
+      <p className="text-gray-700 leading-relaxed tracking-wide relative z-10">{description}</p>
     </div>
   </motion.div>
 )
 
 export default function LogisticsFreightHauling() {
   return (
-    <main className="min-h-screen text-white overflow-hidden tracking-wide">
+    <main className="min-h-screen text-gray-900 overflow-hidden tracking-wide">
       <Header />
 
       <GradientBackground>
         {/* Hero Section */}
-        <section className="relative w-full max-w-[1920px] mx-auto aspect-[16/9] overflow-hidden">
+        <section className="relative w-full max-w-[1920px] mx-auto h-[500px] md:h-[600px] overflow-hidden bg-white">
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/OSG%20Freight%20Hero.jpg-3wUCQUDEDgPhyr5XmrdzCCuOfnSq0z.jpeg"
-            alt="One Stop Growth branded semi-truck with custom branding and DOT/MC numbers, positioned against a backdrop of shipping containers"
+            src="/images/one-stop-growth-freight-hauling.png"
+            alt="One Stop Growth branded semi-truck with shipping containers in the background at sunset, showcasing our professional freight hauling and logistics services"
             fill
-            className="object-contain"
+            className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/50" />
         </section>
 
-        <section className="py-16 bg-[#000047]">
+        <section className="py-16 bg-white">
           <div className="container mx-auto px-6">
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
-              className="text-4xl md:text-5xl font-bold mb-6 text-white"
+              className="text-4xl md:text-5xl font-bold mb-6 text-gray-900"
             >
               Precision Freight Execution – Trusted by Brokers & Shippers
             </motion.h1>
@@ -113,7 +113,7 @@ export default function LogisticsFreightHauling() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="text-xl mb-8 max-w-3xl text-gray-300"
+              className="text-xl mb-8 max-w-3xl text-gray-700"
             >
               Precision in Every Mile. Execution in Every Load.
             </motion.p>
@@ -121,7 +121,7 @@ export default function LogisticsFreightHauling() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="text-lg mb-8 max-w-3xl text-gray-300"
+              className="text-lg mb-8 max-w-3xl text-gray-700"
             >
               Freight isn't just about moving goods—it's about strategy. We operate with discipline, ensuring every load
               is handled with intent, every mile is optimized, and every broker gets the reliability they need. No
@@ -131,7 +131,7 @@ export default function LogisticsFreightHauling() {
         </section>
 
         {/* The Problem with Traditional Freight Logistics */}
-        <section className="py-20 bg-gradient-to-b from-[#000047] to-[#000037]">
+        <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-6">
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
@@ -145,7 +145,7 @@ export default function LogisticsFreightHauling() {
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-lg leading-relaxed mb-6 tracking-wide text-gray-300"
+              className="text-lg leading-relaxed mb-6 tracking-wide text-gray-700"
             >
               Freight isn't a guessing game—at least, it shouldn't be. Too many carriers operate in survival mode,
               chasing loads instead of structuring their business for long-term success. That's how you get:
@@ -170,7 +170,7 @@ export default function LogisticsFreightHauling() {
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="flex items-start bg-gradient-to-r from-[#000047] to-[#0000FF] p-6 rounded-lg shadow-[0_10px_20px_rgba(0,0,255,0.2)] relative overflow-hidden"
+                  className="flex items-start bg-gradient-to-r from-[#800000] to-[#FF0000] p-6 rounded-lg shadow-[0_10px_20px_rgba(255,0,0,0.2)] relative overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[rgba(255,128,0,0.1)] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                   <AlertTriangle className="w-8 h-8 text-[#FF8000] mr-4 flex-shrink-0 relative z-10" />
@@ -187,7 +187,7 @@ export default function LogisticsFreightHauling() {
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  className="flex items-start bg-gradient-to-r from-[#000047] to-[#0000FF] p-6 rounded-lg shadow-[0_10px_20px_rgba(0,0,255,0.2)] relative overflow-hidden"
+                  className="flex items-start bg-gradient-to-r from-[#800000] to-[#FF0000] p-6 rounded-lg shadow-[0_10px_20px_rgba(255,0,0,0.2)] relative overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[rgba(255,128,0,0.1)] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                   <PieChart className="w-8 h-8 text-[#FF8000] mr-4 flex-shrink-0 relative z-10" />
@@ -204,7 +204,7 @@ export default function LogisticsFreightHauling() {
                   initial={{ opacity: 0, x: 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="flex items-start bg-gradient-to-r from-[#000047] to-[#0000FF] p-6 rounded-lg shadow-[0_10px_20px_rgba(0,0,255,0.2)] relative overflow-hidden"
+                  className="flex items-start bg-gradient-to-r from-[#800000] to-[#FF0000] p-6 rounded-lg shadow-[0_10px_20px_rgba(255,0,0,0.2)] relative overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[rgba(255,128,0,0.1)] opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                   <MessageCircle className="w-8 h-8 text-[#FF8000] mr-4 flex-shrink-0 relative z-10" />
@@ -231,7 +231,7 @@ export default function LogisticsFreightHauling() {
         </section>
 
         {/* Our Approach – Freight Execution, No Guesswork */}
-        <section className="py-20 bg-[#000037]">
+        <section className="py-20 bg-white">
           <div className="container mx-auto px-6">
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
@@ -244,8 +244,8 @@ export default function LogisticsFreightHauling() {
             <div className="grid md:grid-cols-3 gap-8">
               <FeatureCard
                 icon={Truck}
-                title="Reliable, Broker-Friendly Load Execution"
-                description="Clear, professional communication with brokers and dispatchers. On-time pickup and delivery—because timing is everything. Layover & detention transparency—no surprises."
+                title="Reliable Load Execution"
+                description="Clear, professional communication with our customers. On-time pickup and delivery—because timing is everything."
               />
               <FeatureCard
                 icon={MapPin}
@@ -276,7 +276,7 @@ export default function LogisticsFreightHauling() {
         </section>
 
         {/* Where We Stand – Full Broker Readiness */}
-        <section className="py-20 bg-gradient-to-b from-[#000037] to-[#000047]">
+        <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-6">
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
@@ -284,21 +284,21 @@ export default function LogisticsFreightHauling() {
               transition={{ duration: 0.5 }}
               className="text-3xl font-bold mb-12 leading-tight tracking-wide text-center text-[#FF8000]"
             >
-              Where We Stand – Full Broker Readiness
+              Where We Stand – Full Customer Readiness
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg mb-8 text-center text-gray-300"
+              className="text-lg mb-8 text-center text-gray-700"
             >
-              Brokers don't like surprises, and neither do we. Here's where we stand:
+              Customers don't like surprises, and neither do we. Here's where we stand:
             </motion.p>
             <div className="max-w-2xl mx-auto">
               <TimelineItem
                 date="🚛 Roadside Inspection"
                 title="Compliance Verified"
-                description="Our fleet has passed one roadside inspection, ensuring compliance with FMCSA regulations. All documentation has been submitted for our new entrant safety audit."
+                description="Our fleet has passed one roadside inspection and we've successfully passed our FMCSA new entrant safety audit, ensuring full compliance with all federal regulations."
               />
               <TimelineItem
                 date="🛡️ Drug & Alcohol Compliance"
@@ -324,9 +324,9 @@ export default function LogisticsFreightHauling() {
                 title="Building Trust"
                 description={
                   <>
-                    Brokers and shippers can trust that we run a fully compliant and accountable operation. We are
+                    Customers and shippers can trust that we run a fully compliant and accountable operation. We are
                     focused on building dedicated lanes for our trucks instead of relying solely on spot rates. Our goal
-                    is to meet our margins while remaining fair with brokers to create long-term partnerships.{" "}
+                    is to meet our margins while remaining fair with customers to create long-term partnerships.{" "}
                     <Link href="/calculator" className="text-[#FF8000] hover:underline">
                       Run a Profitability Check →
                     </Link>
@@ -338,7 +338,7 @@ export default function LogisticsFreightHauling() {
         </section>
 
         {/* How We Operate – A Methodical Execution Process */}
-        <section className="py-20 bg-[#000047]">
+        <section className="py-20 bg-white">
           <div className="container mx-auto px-6">
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
@@ -357,7 +357,7 @@ export default function LogisticsFreightHauling() {
               <ProcessStep
                 number={2}
                 title="Flawless Execution"
-                description="Live tracking & updates—no broker chasing down status reports. Direct coordination—consistent communication from pickup to delivery."
+                description="Live tracking & updates—no customer chasing down status reports. Direct coordination—consistent communication from pickup to delivery."
               />
               <ProcessStep
                 number={3}
@@ -369,7 +369,7 @@ export default function LogisticsFreightHauling() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-b from-[#000047] to-[#000037]">
+        <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-6 text-center">
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
@@ -383,7 +383,7 @@ export default function LogisticsFreightHauling() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed tracking-wide text-gray-300"
+              className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed tracking-wide text-gray-700"
             >
               "Most carriers just move freight. We execute logistics with strategy."
             </motion.p>
@@ -391,11 +391,11 @@ export default function LogisticsFreightHauling() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-lg mb-8 max-w-2xl mx-auto leading-relaxed tracking-wide text-gray-300 text-left"
+              className="text-lg mb-8 max-w-2xl mx-auto leading-relaxed tracking-wide text-gray-700 text-left"
             >
               <li className="flex items-center mb-2">
                 <CheckCircle className="text-[#FF8000] mr-2" size={20} />
-                <span>Consistent Execution – On-time, optimized, and broker-friendly.</span>
+                <span>Consistent Execution – On-time, optimized, and customer-friendly.</span>
               </li>
               <li className="flex items-center mb-2">
                 <CheckCircle className="text-[#FF8000] mr-2" size={20} />
@@ -403,7 +403,7 @@ export default function LogisticsFreightHauling() {
               </li>
               <li className="flex items-center mb-2">
                 <CheckCircle className="text-[#FF8000] mr-2" size={20} />
-                <span>Reliable Broker Partnerships – No surprises, no excuses—just results.</span>
+                <span>Reliable Customer Partnerships – No surprises, no excuses—just results.</span>
               </li>
             </motion.ul>
             <motion.div
@@ -423,9 +423,9 @@ export default function LogisticsFreightHauling() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="text-lg mt-8 text-center text-gray-300"
+              className="text-lg mt-8 text-center text-gray-700"
             >
-              We execute with precision, ensuring both carriers and brokers succeed.{" "}
+              We execute with precision, ensuring both carriers and customers succeed.{" "}
               <Link href="/calculator" className="text-[#FF8000] hover:underline">
                 Get a real-time look at profitability with our Load Profitability Calculator →
               </Link>

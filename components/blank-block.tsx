@@ -5,9 +5,9 @@ import Image from "next/image"
 import Link from "next/link"
 import { Monitor, BotIcon as Robot, Server, Layout, Filter, Briefcase, Truck, Package } from "lucide-react"
 import { useInView } from "framer-motion"
-import { Permanent_Marker } from "next/font/google"
+import { Charm as Chalk } from "next/font/google"
 
-const marker = Permanent_Marker({
+const chalk = Chalk({
   weight: "400",
   subsets: ["latin"],
 })
@@ -55,8 +55,8 @@ export default function GrowthStrategy() {
   const isInView = useInView(ref, { once: true })
 
   return (
-    <section className="py-16 bg-[#002347]">
-      <div className="container mx-auto px-6 font-roboto">
+    <section className={`py-16 bg-[#002347] ${chalk.className}`}>
+      <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left Column */}
           <div className="space-y-6">
@@ -89,7 +89,7 @@ export default function GrowthStrategy() {
             />
             {/* Text */}
             <p
-              className={`${marker.className} text-white text-xl transform -rotate-12 whitespace-nowrap absolute right-4 lg:-right-16 top-full lg:top-1/2 lg:transform lg:-translate-y-1/2 mt-4 lg:mt-0`}
+              className={`${chalk.className} text-white text-xl font-bold transform -rotate-12 whitespace-nowrap absolute right-4 lg:-right-16 top-full lg:top-1/2 lg:transform lg:-translate-y-1/2 mt-4 lg:mt-0`}
               style={{
                 textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
               }}

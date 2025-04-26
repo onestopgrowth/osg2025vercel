@@ -15,7 +15,7 @@ const SectionTitle = ({ children }: { children: React.ReactNode }) => (
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6 }}
-    className="text-3xl md:text-4xl font-bold mb-8 text-white text-center"
+    className="text-3xl md:text-4xl font-bold mb-8 text-gray-900 text-center"
   >
     {children}
   </motion.h2>
@@ -35,14 +35,14 @@ const ServiceCard = ({
     whileInView={{ opacity: 1, y: 0 }}
     whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
     transition={{ duration: 0.5 }}
-    className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#001233] to-[#001845] p-6 shadow-xl"
+    className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-white to-blue-50 p-6 shadow-xl border border-blue-100"
   >
     <div className="absolute inset-0 bg-gradient-to-br from-[#FF8000]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     <Icon className="w-12 h-12 text-[#FF8000] mb-4 transform group-hover:scale-110 transition-transform duration-300" />
-    <h3 className="text-xl font-bold mb-3 text-white group-hover:text-[#FF8000] transition-colors duration-300">
+    <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-[#FF8000] transition-colors duration-300">
       {title}
     </h3>
-    <p className="text-gray-300 leading-relaxed">{description}</p>
+    <p className="text-gray-700 leading-relaxed">{description}</p>
   </motion.div>
 )
 
@@ -56,7 +56,7 @@ const Section = ({ children, className = "" }: { children: React.ReactNode; clas
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8 }}
-      className={`py-20 ${className}`}
+      className={`py-20 bg-white ${className}`}
     >
       {children}
     </motion.section>
@@ -75,7 +75,7 @@ export default function About() {
   const textY = useTransform(scrollYProgress, [0, 1], [0, 100])
 
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-white text-gray-900">
       <Header />
 
       {/* Enhanced Hero Section */}
@@ -89,7 +89,7 @@ export default function About() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white/80" />
         </motion.div>
 
         <motion.div
@@ -100,7 +100,7 @@ export default function About() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-bold mb-6 text-white leading-tight tracking-tight"
+            className="text-4xl md:text-6xl font-bold mb-6 text-gray-900 leading-tight tracking-tight"
           >
             One Stop Growth: Where Vision Meets Execution
           </motion.h1>
@@ -108,7 +108,7 @@ export default function About() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl mb-8 text-gray-200"
+            className="text-xl md:text-2xl mb-8 text-gray-700"
           >
             We don't just plan for growth. We build it.
           </motion.p>
@@ -145,9 +145,9 @@ export default function About() {
       </motion.section>
 
       {/* Introduction Section */}
-      <Section className="bg-[#000]">
+      <Section className="bg-gradient-to-r from-white to-blue-50">
         <div className="container mx-auto px-4">
-          <p className="text-lg mb-6 max-w-3xl mx-auto text-center">
+          <p className="text-lg mb-6 max-w-3xl mx-auto text-center text-gray-700">
             At One Stop Growth, we blend cutting-edge technology with time-tested business principles. Our approach is
             rooted in discipline, data-driven decisions, and a relentless focus on execution.
           </p>
@@ -155,7 +155,7 @@ export default function About() {
       </Section>
 
       {/* Eagles Celebration Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-[#000047]">
+      <section className="py-20 bg-gradient-to-b from-white to-blue-100">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -180,7 +180,7 @@ export default function About() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="text-xl leading-relaxed mb-6 max-w-3xl mx-auto text-center text-gray-300"
+            className="text-xl leading-relaxed mb-6 max-w-3xl mx-auto text-center text-gray-700"
           >
             At One Stop Growth, we blend cutting-edge technology with time-tested business principles. Our approach is
             rooted in discipline, data-driven decisions, and a relentless focus on execution.
@@ -189,12 +189,12 @@ export default function About() {
       </section>
 
       {/* We Are Philly Section */}
-      <Section className="bg-[#111]">
+      <Section className="bg-white">
         <div className="container mx-auto px-4">
           <SectionTitle>Philly Born, Globally Focused</SectionTitle>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <ul className="space-y-4 text-lg">
+              <ul className="space-y-4 text-lg text-gray-700">
                 <li className="flex items-center">
                   <span className="text-[#FF8000] mr-2">•</span> Born in the city of underdogs, we bring grit to every
                   project.
@@ -207,7 +207,7 @@ export default function About() {
                   since 1776.
                 </li>
               </ul>
-              <p className="text-lg mt-6">
+              <p className="text-lg mt-6 text-gray-700">
                 Our roots in Philadelphia shape our approach to business: tough, innovative, and always punching above
                 our weight. But our vision extends far beyond the city limits. We bring this Philly spirit to clients
                 across the globe, combining local grit with world-class expertise.
@@ -227,7 +227,7 @@ export default function About() {
       </Section>
 
       {/* The Stoic Approach Section */}
-      <Section className="bg-gradient-to-b from-[#000] to-[#111] relative">
+      <Section className="bg-gradient-to-b from-blue-50 to-blue-100 relative">
         <div className="absolute inset-0">
           <Image
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Stoic%20OSG-okpk2fghI2bUajhjCLfD52b7AMrj3g.png"
@@ -236,32 +236,32 @@ export default function About() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/70" />
+          <div className="absolute inset-0 bg-white/80" />
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <SectionTitle>Our Philosophy: Stoic Execution in a Chaotic World</SectionTitle>
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-bold mb-4 flex items-center">
+              <h3 className="text-2xl font-bold mb-4 flex items-center text-gray-900">
                 <Shield className="mr-2 text-[#FF8000]" /> Disciplined Execution
               </h3>
-              <p className="text-gray-300 mb-6">
+              <p className="text-gray-700 mb-6">
                 In a world of constant change, we focus on what we can control: our actions, our strategies, and our
                 commitment to excellence.
               </p>
-              <h3 className="text-2xl font-bold mb-4 flex items-center">
+              <h3 className="text-2xl font-bold mb-4 flex items-center text-gray-900">
                 <Code className="mr-2 text-[#FF8000]" /> Results, Not Rhetoric
               </h3>
-              <p className="text-gray-300">
+              <p className="text-gray-700">
                 We believe in the power of tangible outcomes. Our work speaks louder than any sales pitch ever could.
               </p>
             </div>
             <div>
-              <blockquote className="italic text-xl text-gray-400 mb-6">
+              <blockquote className="italic text-xl text-gray-600 mb-6">
                 "You have power over your mind - not outside events. Realize this, and you will find strength."
                 <footer className="text-right">- Marcus Aurelius</footer>
               </blockquote>
-              <blockquote className="italic text-xl text-gray-400">
+              <blockquote className="italic text-xl text-gray-600">
                 "We suffer more often in imagination than in reality."
                 <footer className="text-right">- Seneca</footer>
               </blockquote>
@@ -271,7 +271,7 @@ export default function About() {
       </Section>
 
       {/* Services & Methodology Section */}
-      <Section id="methodology" className="bg-[#000037]">
+      <Section id="methodology" className="bg-gradient-to-r from-white to-blue-50">
         <div className="container mx-auto px-4">
           <SectionTitle>Our Services & Methodology</SectionTitle>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
@@ -297,7 +297,7 @@ export default function About() {
             />
           </div>
           <div className="text-center">
-            <h3 className="text-2xl font-bold mb-6">Our Methodology</h3>
+            <h3 className="text-2xl font-bold mb-6 text-gray-900">Our Methodology</h3>
             <div className="flex justify-center space-x-8 mb-8">
               <div className="text-center">
                 <motion.div
@@ -306,7 +306,7 @@ export default function About() {
                 >
                   <span className="text-2xl font-bold text-white">6σ</span>
                 </motion.div>
-                <p className="font-bold">Six Sigma</p>
+                <p className="font-bold text-gray-900">Six Sigma</p>
               </div>
               <div className="text-center">
                 <motion.div
@@ -315,7 +315,7 @@ export default function About() {
                 >
                   <span className="text-2xl font-bold text-white">A</span>
                 </motion.div>
-                <p className="font-bold">Agile</p>
+                <p className="font-bold text-gray-900">Agile</p>
               </div>
               <div className="text-center">
                 <motion.div
@@ -324,15 +324,15 @@ export default function About() {
                 >
                   <span className="text-2xl font-bold text-white">改</span>
                 </motion.div>
-                <p className="font-bold">Kaizen</p>
+                <p className="font-bold text-gray-900">Kaizen</p>
               </div>
             </div>
-            <p className="text-lg mb-4">
+            <p className="text-lg mb-4 text-gray-700">
               Our methodology isn't just a buzzword—it's the backbone of everything we do. We combine the precision of
               Six Sigma, the adaptability of Agile, and the continuous improvement mindset of Kaizen to create a
               powerful framework for success.
             </p>
-            <p className="text-lg">
+            <p className="text-lg text-gray-700">
               This unique blend allows us to eliminate inefficiencies, adapt quickly to changing markets, and
               consistently deliver superior results. It's not just about working harder—it's about working smarter, with
               a relentless focus on measurable outcomes.
@@ -342,11 +342,11 @@ export default function About() {
       </Section>
 
       {/* Final CTA Section */}
-      <Section className="bg-gradient-to-b from-black to-[#000047]">
+      <Section className="bg-gradient-to-b from-white to-blue-100">
         <div className="container mx-auto px-4 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-8">We don't just consult. We execute.</h2>
-            <p className="text-xl mb-12 max-w-3xl mx-auto text-gray-300">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900">We don't just consult. We execute.</h2>
+            <p className="text-xl mb-12 max-w-3xl mx-auto text-gray-700">
               We're not here to sell you services. We're here to partner with you, to roll up our sleeves and drive
               real, measurable growth for your business. If you're ready for a different kind of growth partner—one that
               values execution over excuses—you're in the right place.

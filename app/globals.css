@@ -15,7 +15,6 @@
 body {
   background: linear-gradient(to right, var(--darkest-blue), var(--darker-blue));
   color: var(--ceramic);
-  font-family: var(--font-roboto), sans-serif;
 }
 
 h1,
@@ -78,27 +77,6 @@ h6 {
   line-height: 1.6;
   font-weight: 500;
   text-transform: uppercase;
-}
-
-/* Roboto font weight utility classes */
-.font-light {
-  font-weight: 300;
-}
-
-.font-regular {
-  font-weight: 400;
-}
-
-.font-medium {
-  font-weight: 500;
-}
-
-.font-bold {
-  font-weight: 700;
-}
-
-.font-black {
-  font-weight: 900;
 }
 
 .container {

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
@@ -30,19 +30,6 @@ export default function EnhancedNavbar() {
     setActiveSubmenu(activeSubmenu === itemName ? null : itemName)
   }
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (activeSubmenu && !(event.target as Element).closest(".nav-dropdown")) {
-        setActiveSubmenu(null)
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [activeSubmenu])
-
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -64,49 +51,35 @@ export default function EnhancedNavbar() {
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <div key={item.name} className="relative group">
-                {item.subItems ? (
-                  <div className="relative group">
-                    <motion.button
-                      className="text-white hover:text-[#FF8000] transition-colors text-lg font-medium flex items-center nav-dropdown"
-                      onClick={() => handleSubmenuToggle(item.name)}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {item.name}
-                      {item.subItems && <ChevronDown className="ml-1 h-4 w-4" />}
-                    </motion.button>
-                    {activeSubmenu === item.name && (
-                      <motion.div
-                        className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                          {item.subItems.map((subItem) => (
-                            <Link
-                              key={subItem.name}
-                              href={subItem.href}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#FF8000] hover:text-white transition-colors"
-                              role="menuitem"
-                              onClick={() => setActiveSubmenu(null)}
-                            >
-                              {subItem.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </div>
-                ) : (
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Link
-                      href={item.href}
-                      className="text-white hover:text-[#FF8000] transition-colors text-lg font-medium flex items-center"
-                    >
-                      {item.name}
-                    </Link>
+                <motion.button
+                  className="text-white hover:text-[#FF8000] transition-colors text-lg font-medium flex items-center"
+                  onClick={() => handleSubmenuToggle(item.name)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {item.name}
+                  {item.subItems && <ChevronDown className="ml-1 h-4 w-4" />}
+                </motion.button>
+                {item.subItems && (
+                  <motion.div
+                    className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                      {item.subItems.map((subItem) => (
+                        <Link
+                          key={subItem.name}
+                          href={subItem.href}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#FF8000] hover:text-white transition-colors"
+                          role="menuitem"
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
                   </motion.div>
                 )}
               </div>

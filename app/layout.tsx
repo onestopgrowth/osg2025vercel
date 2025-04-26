@@ -4,7 +4,7 @@ import type { Metadata } from "next"
 import type React from "react"
 
 const roboto = Roboto({
-  weight: ["300", "400", "500", "700", "900"],
+  weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-roboto",
@@ -22,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${roboto.variable} font-sans`}>
-      <body>{children}</body>
+    <html lang="en" className={roboto.variable}>
+      <body className="font-roboto">{children}</body>
     </html>
   )
 }

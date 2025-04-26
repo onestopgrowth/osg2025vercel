@@ -1,190 +1,97 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X, ChevronDown } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+// Flat list of all pages
 const navItems = [
-  {
-    name: "Business Services",
-    href: "/services",
-    subItems: [
-      { name: "Software Development", href: "/services/software-development" },
-      { name: "IT Infrastructure & Cybersecurity", href: "/services/it-infrastructure-cybersecurity" },
-      { name: "Business Development", href: "/services/business-development" },
-      { name: "Logistics & Freight Hauling", href: "/interstate-freight" },
-    ],
-  },
-  { name: "About Us", href: "/about" },
+  { name: "Software Development", href: "/services/software-development" },
+  { name: "IT Infrastructure", href: "/services/it-infrastructure-cybersecurity" },
+  { name: "Business Development", href: "/services/business-development" },
+  { name: "Logistics & Freight", href: "/services/logistics-freight-hauling" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
+  { name: "Services", href: "/services" },
 ]
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  const handleSubmenuToggle = (itemName: string) => {
-    setActiveSubmenu(activeSubmenu === itemName ? null : itemName)
-  }
 
   return (
-    <>
-      <div className="fixed w-full bg-black text-white z-50">
-        <div className="container mx-auto px-6">
-          <div className="flex justify-end py-1 text-sm font-light">
-            <span>DOT: 4279426 | MC: 1663270 | SCAC: ONRT</span>
+    <header className="relative w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+      <div className="container mx-auto px-6">
+        <div className="flex justify-between items-center py-4 max-w-7xl mx-auto">
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/images/osg-logo.png"
+              alt="One Stop Growth"
+              width={160}
+              height={80}
+              className="w-auto h-10 md:h-12"
+              priority
+            />
+          </Link>
+
+          <nav className="hidden md:flex items-center space-x-6 ml-10 flex-1 justify-center">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-gray-800 hover:text-blue-600 transition-colors text-sm font-medium"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="hidden md:block ml-6">
+            <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm py-1 px-3 h-auto">
+              <Link href="/contact">Get Started</Link>
+            </Button>
           </div>
+
+          <button
+            className="md:hidden text-gray-800 p-2 rounded-md hover:bg-gray-100"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </div>
-      <header
-        className={`fixed w-full top-0 z-50 mt-6 transition-all duration-300 ${
-          isScrolled ? "bg-[#000047]/95 backdrop-blur-sm" : "bg-transparent"
-        }`}
-      >
-        <div className="container mx-auto px-6">
-          <div className="flex justify-between items-center py-4">
-            <Link href="/" className="flex items-center">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/One%20Stop%20Growth%20Logo-8ScVK3VH9tC5LOk2OF6ff3hV9ZNtGV.png"
-                alt="One Stop Growth Logo - A cute blue sprout character with green leaves"
-                width={250}
-                height={62}
-                className="w-auto h-12"
-              />
-            </Link>
-            <nav className="hidden md:flex items-center space-x-8">
+
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
+          <div className="container mx-auto px-6 py-3">
+            <nav className="flex flex-col space-y-3">
               {navItems.map((item) => (
-                <div key={item.name} className="relative group">
-                  {item.subItems ? (
-                    <div className="flex items-center">
-                      <Link
-                        href={item.href}
-                        className="text-white hover:text-[#FF8000] transition-colors text-lg font-medium"
-                      >
-                        {item.name}
-                      </Link>
-                      <button
-                        className="text-white hover:text-[#FF8000] transition-colors ml-1"
-                        onClick={() => handleSubmenuToggle(item.name)}
-                      >
-                        <ChevronDown className="h-4 w-4" />
-                      </button>
-                    </div>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className="text-white hover:text-[#FF8000] transition-colors text-lg font-medium"
-                    >
-                      {item.name}
-                    </Link>
-                  )}
-                  {item.subItems && (
-                    <div className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-[#000047] ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                      <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                        {item.subItems.map((subItem) => (
-                          <Link
-                            key={subItem.name}
-                            href={subItem.href}
-                            className="block px-4 py-2 text-sm text-white hover:bg-[#FF8000] hover:text-white"
-                            role="menuitem"
-                          >
-                            {subItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="block text-gray-800 hover:text-blue-600 transition-colors text-sm font-medium py-1"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
               ))}
-              <Button
-                asChild
-                className="bg-[#FF8000] hover:bg-[#FF9900] text-white font-bold py-2 px-4 rounded-full transition-colors text-lg"
-              >
-                <Link href="/contact">Book Consultation</Link>
-              </Button>
-            </nav>
-            <button
-              className="md:hidden text-white p-2 rounded-md hover:bg-[#0000FF]/20"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-        {mobileMenuOpen && (
-          <nav
-            className={`md:hidden ${
-              isScrolled ? "bg-[#000047]/95 backdrop-blur-sm" : "bg-[#000047]"
-            } border-t border-white/10`}
-          >
-            <ul className="flex flex-col space-y-4 px-6 py-4">
-              {navItems.map((item) => (
-                <li key={item.name}>
-                  {item.subItems ? (
-                    <div>
-                      <button
-                        className="text-white hover:text-[#FF8000] transition-colors block py-2 text-lg font-medium w-full text-left flex items-center justify-between"
-                        onClick={() => handleSubmenuToggle(item.name)}
-                      >
-                        {item.name}
-                        <ChevronDown
-                          className={`ml-1 h-4 w-4 transform transition-transform ${
-                            activeSubmenu === item.name ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                      {activeSubmenu === item.name && (
-                        <ul className="pl-4 mt-2 space-y-2">
-                          {item.subItems.map((subItem) => (
-                            <li key={subItem.name}>
-                              <Link
-                                href={subItem.href}
-                                className="text-white hover:text-[#FF8000] transition-colors block py-1 text-base font-regular"
-                                onClick={() => setMobileMenuOpen(false)}
-                              >
-                                {subItem.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className="text-white hover:text-[#FF8000] transition-colors block py-2 text-lg font-medium"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  )}
-                </li>
-              ))}
-              <li>
+              <div className="pt-2">
                 <Button
                   asChild
-                  className="bg-[#FF8000] hover:bg-[#FF9900] text-white font-bold py-2 px-4 rounded-full transition-colors w-full text-lg"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm py-1 h-auto"
                 >
                   <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                    Book Consultation
+                    Get Started
                   </Link>
                 </Button>
-              </li>
-            </ul>
-          </nav>
-        )}
-      </header>
-    </>
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
+    </header>
   )
 }

@@ -60,14 +60,11 @@
     "zod": "^3.24.1",
     "@emotion/is-prop-valid": "latest",
     "@tsparticles/engine": "latest",
-    "@fortawesome/fontawesome-svg-core": "latest",
     "framer-motion": "latest",
     "@tsparticles/react": "latest",
     "@tsparticles/slim": "latest",
-    "react-intersection-observer": "latest",
-    "react-icons": "latest",
-    "@fortawesome/react-fontawesome": "latest",
-    "@fortawesome/free-solid-svg-icons": "latest"
+    "aos": "latest",
+    "react-intersection-observer": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",

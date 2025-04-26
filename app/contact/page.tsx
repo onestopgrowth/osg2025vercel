@@ -6,7 +6,6 @@ import { useState } from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import styles from "./contact.module.css"
-import Link from "next/link"
 
 export default function Contact() {
   const [name, setName] = useState("")
@@ -90,21 +89,7 @@ export default function Contact() {
               placeholder="Tell us your deepest secrets... or just what you need help with"
             ></textarea>
           </div>
-          <div className={styles.inputGroup}>
-            <div className="flex items-start">
-              <input type="checkbox" id="privacyConsent" name="privacyConsent" className="mt-1 mr-2" required />
-              <label htmlFor="privacyConsent" className={styles.checkboxLabel}>
-                I agree to receive communications by text message about my inquiry. You may opt-out by replying STOP or
-                reply HELP for more information. Message frequency varies. Message and data rates may apply. You may
-                review our{" "}
-                <Link href="/privacy" className="text-[#FF8000] underline">
-                  Privacy Policy
-                </Link>{" "}
-                to learn how your data is used.
-              </label>
-            </div>
-          </div>
-          <button type="submit" className={`${styles.button} bg-[#FF8000] hover:bg-[#FF9900]`}>
+          <button type="submit" className={styles.button}>
             Send Message (No turning back now!)
           </button>
         </form>

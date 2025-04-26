@@ -13,13 +13,12 @@ export default function WhatIsOneStopGrowth() {
           transition={{ duration: 0.5 }}
           whileHover={{ scale: 1.05 }}
         >
-          What Is One Stop Growth, Anyway?
+          Growth isn't luck - it's engineered.
         </motion.h2>
         <p className="text-[#FD7702] leading-relaxed p-7 rounded-xl bg-[#002347] max-w-3xl text-center">
-          It is not just a name; it is a philosophy. Whether in software development, IT infrastructure, business
-          development, or logistics, we follow one principle: Do what is required, and do it well. We apply Six Sigma,
-          Agile, and Kaizen methodologies not because they are fashionable, but because they are effective. Waste is cut
-          away, inefficiencies are discarded, and what remains is a streamlined path to success.
+          At One Stop Growth, we combine business consulting, systems integration, marketing, logistics, and customer
+          success into a seamless growth engine. Instead of hiring multiple vendors and crossing your fingers, you'll
+          have one experienced partner guiding every step of your scale-up journey.
         </p>
       </div>
     </section>
