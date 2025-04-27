@@ -1,16 +1,30 @@
 "use client"
 
-import Header from "../components/header"
-import Hero from "../components/hero"
+import { useRef, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { ArrowRight, Building2, Truck, Code, Server, Shield, BarChart, Layers, LineChart } from "lucide-react"
-import Footer from "../components/footer"
-import { useEffect } from "react"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { motion } from "framer-motion"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+// Define the company's color palette to match logistics page
+const colors = {
+  primaryBlue: "#0052cc", // Deep blue from logo
+  secondaryBlue: "#0077cc", // Medium blue
+  lightBlue: "#e6f2ff", // Light blue for backgrounds
+  primaryGreen: "#00875a", // Green from logo
+  lightGreen: "#e3fcef", // Light green for backgrounds
+  accentOrange: "#FF8000", // Orange accent for CTAs
+}
 
 export default function Home() {
+  const heroRef = useRef(null)
+
   useEffect(() => {
     // Only import AOS in the browser
     const initAOS = async () => {
@@ -27,33 +41,160 @@ export default function Home() {
     initAOS()
   }, [])
 
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  })
+
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 100])
+
   return (
-    <main className="min-h-screen bg-white text-gray-800">
+    <main className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
       <Header />
-      <Hero />
+
+      {/* Hero Section */}
+      <section
+        ref={heroRef}
+        className="relative min-h-screen pt-24 pb-32 flex items-start md:items-center justify-center overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0052cc]/90 via-[#0052cc]/50 to-gray-200" />
+
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/One%20Stop%20Growth%20Hero-Yx9Yd9Yx9Yx9Yx9Yx9Yx9Yx9Yx9Yx9.jpg"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/80 to-white/70" />
+        </div>
+
+        <motion.div className="container mx-auto px-6 pt-16 md:pt-0 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-6"
+            >
+              <Badge className="bg-gradient-to-r from-[#0052cc]/20 to-[#00875a]/20 text-[#0052cc] border-0 px-4 py-1.5 text-sm font-medium">
+                Systems. Efficiency. Execution.
+              </Badge>
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                <span className="bg-gradient-to-r from-[#0052cc] to-[#00875a] bg-clip-text text-transparent">
+                  The Tools to Dominate
+                </span>
+                <br />
+                Across Industries & Systems
+              </h1>
+
+              <p className="text-lg md:text-xl text-gray-700 max-w-xl mb-8">
+                One Stop Growth empowers businesses to modernize operations, unify growth systems and unlock unstoppable
+                potential.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 pt-4 mb-16">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-gradient-to-r from-[#0052cc] to-[#00875a] hover:from-[#0052cc]/90 hover:to-[#00875a]/90 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <Link href="/contact" className="flex items-center gap-2">
+                    Build Your Growth Engine
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
+                </Button>
+
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-[#0052cc] text-[#0052cc] hover:bg-[#0052cc]/10 transition-all duration-300"
+                >
+                  <Link href="#services" className="flex items-center gap-2">
+                    Explore Our Services
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
+                </Button>
+              </div>
+            </motion.div>
+
+            {/* Right Content - Device Mockups */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] w-full hidden md:block"
+            >
+              <div className="absolute top-0 right-0 w-[85%] h-[75%] bg-white rounded-2xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500 z-10">
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/logistics-network.png"
+                    alt="Digital US map with glowing network connections and industrial infrastructure visualization"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 85vw, (max-width: 1200px) 50vw, 40vw"
+                    priority
+                  />
+                </div>
+              </div>
+              <div className="absolute bottom-0 left-0 w-[60%] h-[60%] bg-white rounded-2xl overflow-hidden shadow-2xl z-20">
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/business-dashboard.png"
+                    alt="Business analytics dashboard showing performance metrics and growth data"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 60vw, (max-width: 1200px) 30vw, 25vw"
+                    priority
+                  />
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
 
       {/* Value Proposition Section */}
-      <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-24 bg-gradient-to-b from-white to-[#e6f2ff]/30">
         <div className="container mx-auto px-6">
           {/* Section Header */}
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <span className="inline-block px-4 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center mb-16"
+          >
+            <Badge className="bg-gradient-to-r from-[#0052cc]/20 to-[#00875a]/20 text-[#0052cc] border-0 px-4 py-1.5 text-sm font-medium mb-4">
               Our Approach
-            </span>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900 leading-tight">
-              Growth isn't luck — <span className="text-blue-600">it's engineered.</span>
+            </Badge>
+
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 leading-tight">
+              Growth isn't luck — <span className="text-[#0052cc]">it's engineered.</span>
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed">
+
+            <p className="text-lg text-gray-700 leading-relaxed">
               Most industries (especially logistics and manufacturing) are stuck at least a decade behind. Companies are
               leaving massive profits on the table.
             </p>
-          </div>
+          </motion.div>
 
           {/* Mission Statement Card */}
-          <div className="max-w-4xl mx-auto mb-16">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="max-w-4xl mx-auto mb-16"
+          >
+            <Card className="overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-300">
               <div className="flex flex-col md:flex-row">
-                <div className="md:w-2/5 bg-gradient-to-br from-blue-600 to-blue-800 p-8 text-white flex items-center">
+                <div className="md:w-2/5 bg-gradient-to-br from-[#0052cc] to-[#00875a] p-8 text-white flex items-center">
                   <h3 className="text-2xl md:text-3xl font-bold leading-tight">
                     One Stop Growth was built to change that.
                   </h3>
@@ -66,104 +207,114 @@ export default function Home() {
                   </p>
 
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div className="flex flex-col items-center p-3 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-all duration-300">
-                      <Building2 className="h-8 w-8 text-blue-600 mb-2" />
-                      <span className="text-sm font-medium text-center">Business Development</span>
-                    </div>
-                    <div className="flex flex-col items-center p-3 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-all duration-300">
-                      <Truck className="h-8 w-8 text-blue-600 mb-2" />
-                      <span className="text-sm font-medium text-center">Freight Hauling</span>
-                    </div>
-                    <div className="flex flex-col items-center p-3 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-all duration-300">
-                      <Code className="h-8 w-8 text-blue-600 mb-2" />
-                      <span className="text-sm font-medium text-center">Software Development</span>
-                    </div>
-                    <div className="flex flex-col items-center p-3 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-all duration-300">
-                      <Server className="h-8 w-8 text-blue-600 mb-2" />
-                      <span className="text-sm font-medium text-center">IT Infrastructure</span>
-                    </div>
+                    {[
+                      { icon: <Building2 className="h-8 w-8 text-[#0052cc] mb-2" />, text: "Business Development" },
+                      { icon: <Truck className="h-8 w-8 text-[#00875a] mb-2" />, text: "Freight Hauling" },
+                      { icon: <Code className="h-8 w-8 text-[#0052cc] mb-2" />, text: "Software Development" },
+                      { icon: <Server className="h-8 w-8 text-[#00875a] mb-2" />, text: "IT Infrastructure" },
+                    ].map((item, index) => (
+                      <motion.div
+                        key={index}
+                        whileHover={{ scale: 1.05 }}
+                        className="flex flex-col items-center p-3 rounded-lg border border-gray-100 hover:border-[#0052cc]/20 hover:bg-[#e6f2ff]/30 transition-all duration-300"
+                      >
+                        {item.icon}
+                        <span className="text-sm font-medium text-center">{item.text}</span>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </Card>
+          </motion.div>
 
-          {/* Process Roadmap - Compact Version */}
+          {/* Process Roadmap */}
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-8">
-              <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium mb-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-8"
+            >
+              <Badge className="bg-gradient-to-r from-[#0052cc]/20 to-[#00875a]/20 text-[#0052cc] border-0 px-4 py-1.5 text-sm font-medium mb-2">
                 Our Process
-              </span>
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900">How We Drive Growth</h3>
-            </div>
+              </Badge>
+              <h3 className="text-2xl font-bold text-gray-900">How We Drive Growth</h3>
+            </motion.div>
 
             <div className="relative">
-              {/* Road/Path Background - Thinner line */}
-              <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 transform -translate-x-1/2 hidden md:block"></div>
-              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 transform -translate-y-1/2 md:hidden"></div>
+              {/* Road/Path Background */}
+              <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#0052cc]/20 via-[#00875a]/20 to-[#0052cc]/20 transform -translate-x-1/2 hidden md:block"></div>
+              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0052cc]/20 via-[#00875a]/20 to-[#0052cc]/20 transform -translate-y-1/2 md:hidden"></div>
 
-              {/* Roadmap Steps - More compact */}
+              {/* Roadmap Steps */}
               <div className="relative z-10">
                 {[
                   {
                     title: "Strategic Planning",
                     description: "We apply Six Sigma, Agile, and Kaizen methodologies to eliminate inefficiencies.",
                     icon: "📋",
-                    color: "from-blue-500 to-blue-600",
+                    color: "from-[#0052cc] to-[#0077cc]",
                   },
                   {
                     title: "Execution Excellence",
                     description:
                       "We don't just plan - we execute with precision, ensuring every step moves your business forward.",
                     icon: "🚀",
-                    color: "from-indigo-500 to-indigo-600",
+                    color: "from-[#00875a] to-[#00a86b]",
                   },
                   {
                     title: "Measurable Results",
                     description: "Our data-driven approach ensures you can track progress and see tangible outcomes.",
                     icon: "📊",
-                    color: "from-purple-500 to-purple-600",
+                    color: "from-[#0052cc] to-[#0077cc]",
                   },
                 ].map((item, index) => (
                   <div
                     key={index}
-                    className={`flex ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} flex-col items-center mb-8 md:mb-12`}
+                    className={`flex ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} flex-col items-center mb-12`}
                   >
-                    {/* Mobile Timeline Dot - Smaller */}
+                    {/* Mobile Timeline Dot */}
                     <div className="md:hidden absolute left-0 w-full flex justify-center">
                       <div
-                        className={`w-8 h-8 rounded-full bg-gradient-to-r ${item.color} text-white flex items-center justify-center text-sm font-bold z-20 shadow-md`}
+                        className={`w-10 h-10 rounded-full bg-gradient-to-r ${item.color} text-white flex items-center justify-center text-sm font-bold z-20 shadow-lg`}
                       >
                         {index + 1}
                       </div>
                     </div>
 
-                    {/* Content - More compact */}
-                    <div className="w-full md:w-5/12">
-                      <div
-                        className="bg-white rounded-lg p-4 md:p-6 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-gray-100"
-                        data-aos="fade-up"
-                        data-aos-delay={index * 100}
-                      >
-                        <div className="flex items-center mb-3">
-                          <span className="text-2xl mr-3">{item.icon}</span>
-                          <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
-                        </div>
-                        <p className="text-sm text-gray-600">{item.description}</p>
-                      </div>
-                    </div>
+                    {/* Content */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: index * 0.2 }}
+                      className="w-full md:w-5/12"
+                    >
+                      <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <CardContent className="p-6">
+                          <div className="flex items-center mb-3">
+                            <span className="text-2xl mr-3">{item.icon}</span>
+                            <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                          </div>
+                          <p className="text-gray-700">{item.description}</p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
 
-                    {/* Desktop Timeline Dot - Smaller */}
+                    {/* Desktop Timeline Dot */}
                     <div className="hidden md:flex w-2/12 justify-center">
                       <div className="relative">
-                        <div
-                          className={`w-10 h-10 rounded-full bg-gradient-to-r ${item.color} text-white flex items-center justify-center text-sm font-bold z-20 shadow-md`}
+                        <motion.div
+                          whileHover={{ scale: 1.1 }}
+                          className={`w-12 h-12 rounded-full bg-gradient-to-r ${item.color} text-white flex items-center justify-center text-lg font-bold z-20 shadow-lg`}
                         >
                           {index + 1}
-                        </div>
+                        </motion.div>
                         {index < 2 && (
                           <div
-                            className={`absolute top-10 left-1/2 h-16 w-0.5 bg-gradient-to-b ${item.color} transform -translate-x-1/2`}
+                            className={`absolute top-12 left-1/2 h-24 w-0.5 bg-gradient-to-b ${item.color} transform -translate-x-1/2`}
                           ></div>
                         )}
                       </div>
@@ -182,11 +333,23 @@ export default function Home() {
       {/* Client Logos Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-10"
+          >
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">Companies We've Helped Along The Way</h2>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-wrap justify-center items-center gap-8 md:gap-16"
+          >
             {[
               { name: "Walter Surface Technologies", logo: "/images/Walter-Surface-Technologies.png" },
               { name: "WebBuy", logo: "/images/Web-Buy-Logo.png" },
@@ -195,7 +358,11 @@ export default function Home() {
               { name: "NYU Langone Health", logo: "/images/NYU-Langone.png" },
               { name: "FNX Innov", logo: "/images/FNX-Innov-Logo.jpeg" },
             ].map((client, index) => (
-              <div key={index} className="transition-all duration-300 hover:scale-110">
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.1 }}
+                className="transition-all duration-300 bg-white p-4 rounded-lg shadow-sm hover:shadow-md"
+              >
                 <Image
                   src={client.logo || "/placeholder.svg"}
                   alt={`${client.name} logo`}
@@ -203,50 +370,139 @@ export default function Home() {
                   height={80}
                   className="h-16 md:h-20 w-auto object-contain"
                 />
-              </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Leadership & Team Section */}
+      <section className="py-20 bg-gradient-to-b from-white to-[#f0f7ff]/30">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <Badge className="bg-gradient-to-r from-[#0052cc]/20 to-[#00875a]/20 text-[#0052cc] border-0 px-4 py-1.5 text-sm font-medium mb-4">
+              Our Team
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Leadership & Team</h2>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+              Meet the diverse team of experts driving our integrated approach to business transformation. As a proud
+              veteran-owned and minority-led organization, we bring unique perspectives and disciplined execution to
+              every client partnership.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Michael Morris",
+                title: "CEO & Founder",
+                bio: "Michael is a seasoned entrepreneur and logistics expert with over 17 years of experience in business development, fleet operations, and technology innovation. As a full-stack developer and tech solution engineer, he has spearheaded initiatives to bridge gaps between logistics operations and scalable SaaS platforms. Michael's vision drives One Stop Growth toward becoming a leader in transportation logistics and tech integration.",
+                color: "border-[#0052cc]",
+              },
+              {
+                name: "Cedric Martino",
+                title: "COO & Managing Partner",
+                bio: "Cedric brings a decorated background in military logistics, having served as a Chemical Operations Specialist in the U.S. Army. With extensive experience in hazard management, compliance, and operational discipline, Cedric oversees veteran-oriented partnerships and ensures One Stop Growth maintains the highest standards in safety and efficiency.",
+                color: "border-[#00875a]",
+              },
+              {
+                name: "Marilyn Truell",
+                title: "Chief Financial Officer (CFO)",
+                bio: "Marilyn is a finance and administration professional with deep expertise in vendor management, operational scaling, and compliance oversight. She leads financial structuring, SBA and FMCSA compliance, and funding operations at One Stop Growth, positioning the company for sustainable growth.",
+                color: "border-[#0052cc]",
+              },
+              {
+                name: "Anthony Matarazzo",
+                title: "Operations Manager",
+                bio: "Anthony oversees dispatch coordination, fleet management, and daily logistics operations. With strong industry knowledge and client service skills, he ensures seamless load execution and operational reliability across all lanes and markets.",
+                color: "border-[#00875a]",
+              },
+              {
+                name: "Jamal Johnson",
+                title: "Safety Coordinator & Driver Relations",
+                bio: "Jamal brings hands-on field expertise to driver onboarding, safety protocol implementation, and regulatory compliance. As a non-CDL driver and safety liaison, he supports fleet-wide safety training and maintains a proactive safety culture.",
+                color: "border-[#0052cc]",
+              },
+              {
+                name: "Barry Bellinger",
+                title: "Senior Mobile Logistics Consultant",
+                bio: "Barry provides strategic insight into mobile logistics operations, fleet utilization, and customer-facing logistics services. With extensive on-the-ground experience, he bridges dispatch, fleet strategy, and customer service excellence.",
+                color: "border-[#00875a]",
+              },
+            ].map((member, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border-l-4 h-full flex flex-col"
+                style={{ borderLeftColor: member.color.replace("border-", "") }}
+              >
+                <div className="p-6 flex flex-col h-full">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-gray-900">{member.name}</h3>
+                    <p className="text-[#0052cc] font-medium">{member.title}</p>
+                  </div>
+                  <div className="bg-gradient-to-r from-gray-50 to-white p-4 rounded-lg flex-grow shadow-inner">
+                    <p className="text-gray-700 text-sm leading-relaxed">{member.bio}</p>
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-white text-gray-900">
+      <section className="py-20 bg-gradient-to-r from-[#0052cc]/5 to-[#00875a]/5">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
                 Why One Stop Growth? Because Accountability Matters
               </h2>
-              <p className="text-gray-600 mb-8">
+              <p className="text-gray-700 mb-8">
                 We don't pass blame. We drive outcomes. Our multidisciplinary team combines business development,
                 logistics expertise, software development, and IT integration — all under one roof. We don't just build
                 plans — we build engines for sustainable, unstoppable growth.
               </p>
 
               <div className="grid grid-cols-2 gap-8">
-                <div>
+                <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="flex items-baseline gap-1 mb-2">
-                    <span className="text-4xl font-bold text-gray-900">14</span>
-                    <span className="text-blue-600 text-xl">+</span>
+                    <span className="text-4xl font-bold text-[#0052cc]">14</span>
+                    <span className="text-[#00875a] text-xl">+</span>
                   </div>
-                  <p className="text-gray-600">Years of Experience</p>
+                  <p className="text-gray-700">Years of Experience</p>
                 </div>
-                <div>
+                <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="flex items-baseline gap-1 mb-2">
-                    <span className="text-4xl font-bold text-gray-900">30</span>
-                    <span className="text-blue-600 text-xl">+</span>
+                    <span className="text-4xl font-bold text-[#0052cc]">30</span>
+                    <span className="text-[#00875a] text-xl">+</span>
                   </div>
-                  <p className="text-gray-600">Experts on Staff</p>
+                  <p className="text-gray-700">Experts on Staff</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             <motion.div
-              className="relative aspect-video w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-xl"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative aspect-video w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-2xl"
             >
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dashboard-gObPk5m7eKB00kPn3dZ04dM5fz3HME.png"
@@ -255,21 +511,31 @@ export default function Home() {
                 className="object-cover"
                 priority
               />
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#0052cc]/10 to-transparent hover:opacity-0 transition-opacity duration-300"></div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="py-24 bg-white">
+      <section id="services" className="py-24 bg-white">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <Badge className="bg-gradient-to-r from-[#0052cc]/20 to-[#00875a]/20 text-[#0052cc] border-0 px-4 py-1.5 text-sm font-medium mb-4">
+              Our Services
+            </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Your Growth, Our Expertise</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
               Our tailored services span multiple domains, combining innovation, precision, and scalability to meet your
               unique business needs.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -277,100 +543,241 @@ export default function Home() {
                 title: "Software Development",
                 description: "Custom business applications built to scale.",
                 icon: <Code className="h-6 w-6" />,
-                color: "from-blue-500 to-blue-600",
+                color: "from-[#0052cc] to-[#0077cc]",
+                link: "/services/software-development",
               },
               {
                 title: "IT Infrastructure & Cybersecurity",
                 description: "Protect and streamline your core operations.",
                 icon: <Shield className="h-6 w-6" />,
-                color: "from-indigo-500 to-indigo-600",
+                color: "from-[#00875a] to-[#00a86b]",
+                link: "/services/it-infrastructure-cybersecurity",
               },
               {
                 title: "Business Development",
                 description: "Growth systems engineered to scale your pipeline.",
                 icon: <BarChart className="h-6 w-6" />,
-                color: "from-purple-500 to-purple-600",
+                color: "from-[#0052cc] to-[#0077cc]",
+                link: "/services/business-development",
               },
               {
                 title: "Logistics & Freight",
                 description: "Operations optimization for transport and logistics.",
                 icon: <Truck className="h-6 w-6" />,
-                color: "from-pink-500 to-pink-600",
+                color: "from-[#00875a] to-[#00a86b]",
+                link: "/services/logistics-freight-hauling",
               },
               {
                 title: "User Experience (UX)",
                 description: "Design experiences that drive adoption and revenue.",
                 icon: <Layers className="h-6 w-6" />,
-                color: "from-orange-500 to-orange-600",
+                color: "from-[#0052cc] to-[#0077cc]",
+                link: "/services/software-development#ui",
               },
               {
                 title: "Data & Analytics",
                 description: "Harness data to fuel better decisions and faster growth.",
                 icon: <LineChart className="h-6 w-6" />,
-                color: "from-green-500 to-green-600",
+                color: "from-[#00875a] to-[#00a86b]",
+                link: "/services/software-development#analytics",
               },
             ].map((service, index) => (
-              <Card key={index} className="overflow-hidden transition-all duration-300 hover:shadow-lg group border-0">
-                <div className={`h-2 bg-gradient-to-r ${service.color}`} />
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg bg-gradient-to-r ${service.color} text-white`}>{service.icon}</div>
-                    <h3 className="text-xl font-bold text-gray-900">{service.title}</h3>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">{service.description}</p>
-                </CardContent>
-                <CardFooter className="pt-0">
-                  <Link
-                    href={`/services/${service.title.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "and").replace(/$$|$$/g, "")}`}
-                    className="text-blue-600 font-medium flex items-center gap-1 group-hover:gap-2 transition-all duration-300"
-                  >
-                    Learn more <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </CardFooter>
-              </Card>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
+                  <div className={`h-2 bg-gradient-to-r ${service.color}`} />
+                  <CardHeader className="pb-2">
+                    <div className="flex items-center gap-3">
+                      <div className={`p-2 rounded-lg bg-gradient-to-r ${service.color} text-white`}>
+                        {service.icon}
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900">{service.title}</h3>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-700">{service.description}</p>
+                  </CardContent>
+                  <CardFooter className="pt-0">
+                    <Link
+                      href={service.link}
+                      className="text-[#0052cc] font-medium flex items-center gap-1 group-hover:gap-2 transition-all duration-300"
+                    >
+                      Learn more <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </CardFooter>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-r from-[#0052cc]/5 to-[#00875a]/5">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <Badge className="bg-gradient-to-r from-[#0052cc]/20 to-[#00875a]/20 text-[#0052cc] border-0 px-4 py-1.5 text-sm font-medium mb-4">
+              Testimonials
+            </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">What Our Clients Say</h2>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                quote:
-                  "One Stop Growth did an excellent job. This project was a large one, and they were able to effectively communicate with our team to get us to a good resolution point. I appreciate that we were able to easily integration them into our SCRUM schedule.",
-                author: "Steve Dimock",
-                position: "CTO, WebBuy",
-              },
-              {
-                quote:
-                  "Working with Michael and his team was a game-changer.They brought AI expertise to enhance the capabilities of our drone surveying solutions. Their contribution allowed our drones to accurately identify and analyze sediment deposits within quarry environments, significantly improving the speed and precision of our valuations. Their professionalism, innovation, and ability to seamlessly integrate with our technical needs made them an invaluable partner.",
-                author: "Jean-Phillipe Lefebvre",
-                position: "VP - Infrastructures, mobilité et aménagement, FNX-Innov",
-              },
-              {
-                quote:
-                  "One Stop Growth is an excellent organization for professionals who want to elevate their visibility...they are professional, understood the objective, asked the right questions and delivered. I recommend One Stop Growth - they are reliable, dependable and consistent",
-                author: "Ellen Harris",
-                position: "CEO/Founder, Business-Accelerated",
-              },
-            ].map((testimonial, index) => (
-              <div key={index} className="bg-white p-8 rounded-lg shadow-sm">
-                <p className="text-gray-700 mb-6 italic">"{testimonial.quote}"</p>
-                <div>
-                  <p className="font-bold text-gray-900">{testimonial.author}</p>
-                  <p className="text-gray-500 text-sm">{testimonial.position}</p>
+          <Tabs defaultValue="tab1" className="w-full">
+            <TabsList className="grid w-full grid-cols-3 mb-8 bg-white/50 p-1 rounded-lg">
+              <TabsTrigger value="tab1" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                WebBuy
+              </TabsTrigger>
+              <TabsTrigger value="tab2" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                FNX-Innov
+              </TabsTrigger>
+              <TabsTrigger value="tab3" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                Business-Accelerated
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="tab1" className="mt-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="bg-white p-8 rounded-lg shadow-lg border-l-4 border-[#0052cc]"
+              >
+                <p className="text-gray-700 mb-6 italic text-lg">
+                  "One Stop Growth did an excellent job. This project was a large one, and they were able to effectively
+                  communicate with our team to get us to a good resolution point. I appreciate that we were able to
+                  easily integration them into our SCRUM schedule."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-[#0052cc]/10 rounded-full flex items-center justify-center mr-4">
+                    <Building2 className="w-6 h-6 text-[#0052cc]" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-gray-900">Steve Dimock</p>
+                    <p className="text-gray-500 text-sm">CTO, WebBuy</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              </motion.div>
+            </TabsContent>
+
+            <TabsContent value="tab2" className="mt-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="bg-white p-8 rounded-lg shadow-lg border-l-4 border-[#00875a]"
+              >
+                <p className="text-gray-700 mb-6 italic text-lg">
+                  "Working with Michael and his team was a game-changer. They brought AI expertise to enhance the
+                  capabilities of our drone surveying solutions. Their contribution allowed our drones to accurately
+                  identify and analyze sediment deposits within quarry environments, significantly improving the speed
+                  and precision of our valuations. Their professionalism, innovation, and ability to seamlessly
+                  integrate with our technical needs made them an invaluable partner."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-[#00875a]/10 rounded-full flex items-center justify-center mr-4">
+                    <Building2 className="w-6 h-6 text-[#00875a]" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-gray-900">Jean-Phillipe Lefebvre</p>
+                    <p className="text-gray-500 text-sm">VP - Infrastructures, mobilité et aménagement, FNX-Innov</p>
+                  </div>
+                </div>
+              </motion.div>
+            </TabsContent>
+
+            <TabsContent value="tab3" className="mt-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="bg-white p-8 rounded-lg shadow-lg border-l-4 border-[#0052cc]"
+              >
+                <p className="text-gray-700 mb-6 italic text-lg">
+                  "One Stop Growth is an excellent organization for professionals who want to elevate their
+                  visibility...they are professional, understood the objective, asked the right questions and delivered.
+                  I recommend One Stop Growth - they are reliable, dependable and consistent."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-[#0052cc]/10 rounded-full flex items-center justify-center mr-4">
+                    <Building2 className="w-6 h-6 text-[#0052cc]" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-gray-900">Ellen Harris</p>
+                    <p className="text-gray-500 text-sm">CEO/Founder, Business-Accelerated</p>
+                  </div>
+                </div>
+              </motion.div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl mx-auto bg-gradient-to-r from-[#0052cc]/10 to-[#00875a]/10 p-8 rounded-lg shadow-lg"
+          >
+            <h2 className="text-3xl font-bold mb-6 text-gray-900">Stop Managing Chaos. Start Building Systems.</h2>
+            <p className="text-lg mb-8 text-gray-700">
+              Ready to transform your business with integrated growth systems that actually work?
+            </p>
+            <Button
+              asChild
+              size="lg"
+              className="bg-gradient-to-r from-[#0052cc] to-[#00875a] hover:from-[#0052cc]/90 hover:to-[#00875a]/90 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <Link href="/contact" className="flex items-center gap-2">
+                Let's Talk Growth
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </Button>
+
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="flex flex-col items-center bg-white p-3 rounded-lg shadow-md"
+              >
+                <p className="text-lg font-medium mb-1">Call Us Directly:</p>
+                <a href="tel:8006741999" className="text-[#0052cc] text-lg font-bold hover:underline">
+                  800-674-3599
+                </a>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="flex flex-col items-center bg-white p-3 rounded-lg shadow-md"
+              >
+                <p className="text-lg font-medium mb-1">Email Our Team:</p>
+                <a href="mailto:get@onestopgrowth.com" className="text-[#0052cc] text-lg font-bold hover:underline">
+                  get@onestopgrowth.com
+                </a>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          <div className="mt-12 text-center text-sm text-gray-600">
+            <div className="flex justify-center gap-2">
+              <Badge variant="outline" className="bg-[#0052cc]/10 text-[#0052cc] border-[#0052cc]/20">
+                DOT: 4279426
+              </Badge>
+              <Badge variant="outline" className="bg-[#00875a]/10 text-[#00875a] border-[#00875a]/20">
+                MC: 1663270
+              </Badge>
+            </div>
           </div>
         </div>
       </section>
