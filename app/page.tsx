@@ -10,7 +10,6 @@ import Footer from "@/components/footer"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 // Define the company's color palette to match logistics page
 const colors = {
@@ -56,7 +55,7 @@ export default function Home() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative min-h-screen pt-24 pb-32 flex items-start md:items-center justify-center overflow-hidden"
+        className="relative min-h-screen pt-24 pb-16 md:pb-32 flex items-start md:items-center justify-center overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#0052cc]/90 via-[#0052cc]/50 to-gray-200" />
 
@@ -71,20 +70,20 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/80 to-white/70" />
         </div>
 
-        <motion.div className="container mx-auto px-6 pt-16 md:pt-0 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <motion.div className="container mx-auto px-4 md:px-6 pt-16 md:pt-0 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-6"
+              className="space-y-4 md:space-y-6"
             >
-              <Badge className="bg-gradient-to-r from-[#0052cc]/20 to-[#00875a]/20 text-[#0052cc] border-0 px-4 py-1.5 text-sm font-medium">
+              <Badge className="bg-gradient-to-r from-[#0052cc]/20 to-[#00875a]/20 text-[#0052cc] border-0 px-3 py-1 text-xs md:px-4 md:py-1.5 md:text-sm font-medium">
                 Systems. Efficiency. Execution.
               </Badge>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight leading-tight">
                 <span className="bg-gradient-to-r from-[#0052cc] to-[#00875a] bg-clip-text text-transparent">
                   The Tools to Dominate
                 </span>
@@ -92,16 +91,16 @@ export default function Home() {
                 Across Industries & Systems
               </h1>
 
-              <p className="text-lg md:text-xl text-gray-700 max-w-xl mb-8">
+              <p className="text-base md:text-lg lg:text-xl text-gray-700 max-w-xl mb-4 md:mb-8">
                 One Stop Growth empowers businesses to modernize operations, unify growth systems and unlock unstoppable
                 potential.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-4 mb-16">
+              <div className="flex flex-col sm:flex-row gap-4 pt-2 md:pt-4 mb-8 md:mb-16">
                 <Button
                   asChild
                   size="lg"
-                  className="bg-gradient-to-r from-[#0052cc] to-[#00875a] hover:from-[#0052cc]/90 hover:to-[#00875a]/90 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="bg-gradient-to-r from-[#0052cc] to-[#00875a] hover:from-[#0052cc]/90 hover:to-[#00875a]/90 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
                 >
                   <Link href="/contact" className="flex items-center gap-2">
                     Build Your Growth Engine
@@ -113,7 +112,7 @@ export default function Home() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="border-[#0052cc] text-[#0052cc] hover:bg-[#0052cc]/10 transition-all duration-300"
+                  className="border-[#0052cc] text-[#0052cc] hover:bg-[#0052cc]/10 transition-all duration-300 w-full sm:w-auto"
                 >
                   <Link href="#services" className="flex items-center gap-2">
                     Explore Our Services
@@ -128,7 +127,7 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] w-full hidden md:block"
+              className="relative h-[300px] sm:h-[350px] md:h-[400px] lg:h-[500px] w-full hidden md:block"
             >
               <div className="absolute top-0 right-0 w-[85%] h-[75%] bg-white rounded-2xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500 z-10">
                 <div className="relative w-full h-full">
@@ -160,25 +159,25 @@ export default function Home() {
       </section>
 
       {/* Value Proposition Section */}
-      <section className="py-24 bg-gradient-to-b from-white to-[#e6f2ff]/30">
-        <div className="container mx-auto px-6">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-white to-[#e6f2ff]/30">
+        <div className="container mx-auto px-4 md:px-6">
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center mb-16"
+            className="max-w-4xl mx-auto text-center mb-12 md:mb-16"
           >
-            <Badge className="bg-gradient-to-r from-[#0052cc]/20 to-[#00875a]/20 text-[#0052cc] border-0 px-4 py-1.5 text-sm font-medium mb-4">
+            <Badge className="bg-gradient-to-r from-[#0052cc]/20 to-[#00875a]/20 text-[#0052cc] border-0 px-3 py-1 text-xs md:px-4 md:py-1.5 md:text-sm font-medium mb-4">
               Our Approach
             </Badge>
 
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 leading-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-gray-900 leading-tight">
               Growth isn't luck — <span className="text-[#0052cc]">it's engineered.</span>
             </h2>
 
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
               Most industries (especially logistics and manufacturing) are stuck at least a decade behind. Companies are
               leaving massive profits on the table.
             </p>
@@ -190,36 +189,48 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="max-w-4xl mx-auto mb-16"
+            className="max-w-4xl mx-auto mb-12 md:mb-16"
           >
             <Card className="overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-300">
               <div className="flex flex-col md:flex-row">
-                <div className="md:w-2/5 bg-gradient-to-br from-[#0052cc] to-[#00875a] p-8 text-white flex items-center">
-                  <h3 className="text-2xl md:text-3xl font-bold leading-tight">
+                <div className="md:w-2/5 bg-gradient-to-br from-[#0052cc] to-[#00875a] p-6 md:p-8 text-white flex items-center">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold leading-tight">
                     One Stop Growth was built to change that.
                   </h3>
                 </div>
-                <div className="md:w-3/5 p-8">
-                  <p className="text-lg text-gray-700 mb-6 font-medium">
+                <div className="md:w-3/5 p-6 md:p-8">
+                  <p className="text-base md:text-lg text-gray-700 mb-6 font-medium">
                     We are not &quot;just consultants.&quot; We are architects of growth systems, blending Business
                     Development, Freight Hauling, Software Development, and IT Infrastructure to rebuild businesses for
                     the modern world.
                   </p>
 
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                     {[
-                      { icon: <Building2 className="h-8 w-8 text-[#0052cc] mb-2" />, text: "Business Development" },
-                      { icon: <Truck className="h-8 w-8 text-[#00875a] mb-2" />, text: "Freight Hauling" },
-                      { icon: <Code className="h-8 w-8 text-[#0052cc] mb-2" />, text: "Software Development" },
-                      { icon: <Server className="h-8 w-8 text-[#00875a] mb-2" />, text: "IT Infrastructure" },
+                      {
+                        icon: <Building2 className="h-6 w-6 md:h-8 md:w-8 text-[#0052cc] mb-2" />,
+                        text: "Business Development",
+                      },
+                      {
+                        icon: <Truck className="h-6 w-6 md:h-8 md:w-8 text-[#00875a] mb-2" />,
+                        text: "Freight Hauling",
+                      },
+                      {
+                        icon: <Code className="h-6 w-6 md:h-8 md:w-8 text-[#0052cc] mb-2" />,
+                        text: "Software Development",
+                      },
+                      {
+                        icon: <Server className="h-6 w-6 md:h-8 md:w-8 text-[#00875a] mb-2" />,
+                        text: "IT Infrastructure",
+                      },
                     ].map((item, index) => (
                       <motion.div
                         key={index}
                         whileHover={{ scale: 1.05 }}
-                        className="flex flex-col items-center p-3 rounded-lg border border-gray-100 hover:border-[#0052cc]/20 hover:bg-[#e6f2ff]/30 transition-all duration-300"
+                        className="flex flex-col items-center p-2 md:p-3 rounded-lg border border-gray-100 hover:border-[#0052cc]/20 hover:bg-[#e6f2ff]/30 transition-all duration-300"
                       >
                         {item.icon}
-                        <span className="text-sm font-medium text-center">{item.text}</span>
+                        <span className="text-xs md:text-sm font-medium text-center">{item.text}</span>
                       </motion.div>
                     ))}
                   </div>
@@ -237,16 +248,18 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="text-center mb-8"
             >
-              <Badge className="bg-gradient-to-r from-[#0052cc]/20 to-[#00875a]/20 text-[#0052cc] border-0 px-4 py-1.5 text-sm font-medium mb-2">
+              <Badge className="bg-gradient-to-r from-[#0052cc]/20 to-[#00875a]/20 text-[#0052cc] border-0 px-3 py-1 text-xs md:px-4 md:py-1.5 md:text-sm font-medium mb-2">
                 Our Process
               </Badge>
-              <h3 className="text-2xl font-bold text-gray-900">How We Drive Growth</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900">How We Drive Growth</h3>
             </motion.div>
 
             <div className="relative">
-              {/* Road/Path Background */}
+              {/* Mobile Timeline */}
+              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#0052cc]/20 via-[#00875a]/20 to-[#0052cc]/20 md:hidden"></div>
+
+              {/* Desktop Timeline */}
               <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#0052cc]/20 via-[#00875a]/20 to-[#0052cc]/20 transform -translate-x-1/2 hidden md:block"></div>
-              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-[#0052cc]/20 via-[#00875a]/20 to-[#0052cc]/20 transform -translate-y-1/2 md:hidden"></div>
 
               {/* Roadmap Steps */}
               <div className="relative z-10">
@@ -271,40 +284,60 @@ export default function Home() {
                     color: "from-[#0052cc] to-[#0077cc]",
                   },
                 ].map((item, index) => (
-                  <div
-                    key={index}
-                    className={`flex ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} flex-col items-center mb-12`}
-                  >
+                  <div key={index} className="flex flex-col md:flex-row md:items-center mb-12 md:mb-16">
                     {/* Mobile Timeline Dot */}
-                    <div className="md:hidden absolute left-0 w-full flex justify-center">
+                    <div className="absolute left-0 md:hidden">
                       <div
-                        className={`w-10 h-10 rounded-full bg-gradient-to-r ${item.color} text-white flex items-center justify-center text-sm font-bold z-20 shadow-lg`}
+                        className={`w-12 h-12 rounded-full bg-gradient-to-r ${item.color} text-white flex items-center justify-center text-lg font-bold z-20 shadow-lg`}
                       >
                         {index + 1}
                       </div>
                     </div>
 
-                    {/* Content */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: index * 0.2 }}
-                      className="w-full md:w-5/12"
-                    >
-                      <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                        <CardContent className="p-6">
-                          <div className="flex items-center mb-3">
-                            <span className="text-2xl mr-3">{item.icon}</span>
-                            <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
-                          </div>
-                          <p className="text-gray-700">{item.description}</p>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
+                    {/* Content for mobile */}
+                    <div className="md:hidden pl-16 pr-4">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: index * 0.2 }}
+                      >
+                        <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                          <CardContent className="p-4 md:p-6">
+                            <div className="flex items-center mb-3">
+                              <span className="text-2xl mr-3">{item.icon}</span>
+                              <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                            </div>
+                            <p className="text-gray-700 text-sm">{item.description}</p>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    </div>
+
+                    {/* Desktop layout - Left side */}
+                    <div className="hidden md:block md:w-5/12 md:pr-12 md:text-right">
+                      {index % 2 === 0 && (
+                        <motion.div
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: index * 0.2 }}
+                        >
+                          <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                            <CardContent className="p-6">
+                              <div className="flex items-center justify-end mb-3">
+                                <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                                <span className="text-2xl ml-3">{item.icon}</span>
+                              </div>
+                              <p className="text-gray-700">{item.description}</p>
+                            </CardContent>
+                          </Card>
+                        </motion.div>
+                      )}
+                    </div>
 
                     {/* Desktop Timeline Dot */}
-                    <div className="hidden md:flex w-2/12 justify-center">
+                    <div className="hidden md:flex md:w-2/12 md:justify-center">
                       <div className="relative">
                         <motion.div
                           whileHover={{ scale: 1.1 }}
@@ -320,8 +353,28 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* Empty space for alignment */}
-                    <div className="hidden md:block w-5/12"></div>
+                    {/* Desktop layout - Right side */}
+                    <div className="hidden md:block md:w-5/12 md:pl-12">
+                      {index % 2 === 1 && (
+                        <motion.div
+                          initial={{ opacity: 0, x: 20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: index * 0.2 }}
+                        >
+                          <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                            <CardContent className="p-6">
+                              <div className="flex items-center mb-3">
+                                <span className="text-2xl mr-3">{item.icon}</span>
+                                <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                              </div>
+                              <p className="text-gray-700">{item.description}</p>
+                            </CardContent>
+                          </Card>
+                        </motion.div>
+                      )}
+                      {index % 2 === 2 && <div></div>}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -330,17 +383,20 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Rest of the sections remain unchanged */}
       {/* Client Logos Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-12 md:py-16 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-10"
+            className="text-center mb-8 md:mb-10"
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">Companies We've Helped Along The Way</h2>
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-gray-900">
+              Companies We've Helped Along The Way
+            </h2>
           </motion.div>
 
           <motion.div
@@ -348,7 +404,7 @@ export default function Home() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex flex-wrap justify-center items-center gap-8 md:gap-16"
+            className="flex flex-wrap justify-center items-center gap-4 md:gap-8 lg:gap-16"
           >
             {[
               { name: "Walter Surface Technologies", logo: "/images/Walter-Surface-Technologies.png" },
@@ -361,14 +417,14 @@ export default function Home() {
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.1 }}
-                className="transition-all duration-300 bg-white p-4 rounded-lg shadow-sm hover:shadow-md"
+                className="transition-all duration-300 bg-white p-3 md:p-4 rounded-lg shadow-sm hover:shadow-md"
               >
                 <Image
                   src={client.logo || "/placeholder.svg"}
                   alt={`${client.name} logo`}
                   width={180}
                   height={80}
-                  className="h-16 md:h-20 w-auto object-contain"
+                  className="h-12 md:h-16 lg:h-20 w-auto object-contain"
                 />
               </motion.div>
             ))}
@@ -518,66 +574,68 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 bg-white">
-        <div className="container mx-auto px-6">
+      <section id="services" className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <Badge className="bg-gradient-to-r from-[#0052cc]/20 to-[#00875a]/20 text-[#0052cc] border-0 px-4 py-1.5 text-sm font-medium mb-4">
+            <Badge className="bg-gradient-to-r from-[#0052cc]/20 to-[#00875a]/20 text-[#0052cc] border-0 px-3 py-1 text-xs md:px-4 md:py-1.5 md:text-sm font-medium mb-4">
               Our Services
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Your Growth, Our Expertise</h2>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-gray-900">
+              Your Growth, Our Expertise
+            </h2>
+            <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto">
               Our tailored services span multiple domains, combining innovation, precision, and scalability to meet your
               unique business needs.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[
               {
                 title: "Software Development",
                 description: "Custom business applications built to scale.",
-                icon: <Code className="h-6 w-6" />,
+                icon: <Code className="h-5 w-5 md:h-6 md:w-6" />,
                 color: "from-[#0052cc] to-[#0077cc]",
                 link: "/services/software-development",
               },
               {
                 title: "IT Infrastructure & Cybersecurity",
                 description: "Protect and streamline your core operations.",
-                icon: <Shield className="h-6 w-6" />,
+                icon: <Shield className="h-5 w-5 md:h-6 md:w-6" />,
                 color: "from-[#00875a] to-[#00a86b]",
                 link: "/services/it-infrastructure-cybersecurity",
               },
               {
                 title: "Business Development",
                 description: "Growth systems engineered to scale your pipeline.",
-                icon: <BarChart className="h-6 w-6" />,
+                icon: <BarChart className="h-5 w-5 md:h-6 md:w-6" />,
                 color: "from-[#0052cc] to-[#0077cc]",
                 link: "/services/business-development",
               },
               {
                 title: "Logistics & Freight",
                 description: "Operations optimization for transport and logistics.",
-                icon: <Truck className="h-6 w-6" />,
+                icon: <Truck className="h-5 w-5 md:h-6 md:w-6" />,
                 color: "from-[#00875a] to-[#00a86b]",
                 link: "/services/logistics-freight-hauling",
               },
               {
                 title: "User Experience (UX)",
                 description: "Design experiences that drive adoption and revenue.",
-                icon: <Layers className="h-6 w-6" />,
+                icon: <Layers className="h-5 w-5 md:h-6 md:w-6" />,
                 color: "from-[#0052cc] to-[#0077cc]",
                 link: "/services/software-development#ui",
               },
               {
                 title: "Data & Analytics",
                 description: "Harness data to fuel better decisions and faster growth.",
-                icon: <LineChart className="h-6 w-6" />,
+                icon: <LineChart className="h-5 w-5 md:h-6 md:w-6" />,
                 color: "from-[#00875a] to-[#00a86b]",
                 link: "/services/software-development#analytics",
               },
@@ -590,24 +648,24 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                  <div className={`h-2 bg-gradient-to-r ${service.color}`} />
-                  <CardHeader className="pb-2">
-                    <div className="flex items-center gap-3">
-                      <div className={`p-2 rounded-lg bg-gradient-to-r ${service.color} text-white`}>
+                  <div className={`h-1 md:h-2 bg-gradient-to-r ${service.color}`} />
+                  <CardHeader className="pb-2 p-4 md:p-6">
+                    <div className="flex items-center gap-2 md:gap-3">
+                      <div className={`p-1.5 md:p-2 rounded-lg bg-gradient-to-r ${service.color} text-white`}>
                         {service.icon}
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900">{service.title}</h3>
+                      <h3 className="text-base md:text-xl font-bold text-gray-900">{service.title}</h3>
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-700">{service.description}</p>
+                  <CardContent className="p-4 md:p-6 pt-0 md:pt-0">
+                    <p className="text-sm md:text-base text-gray-700">{service.description}</p>
                   </CardContent>
-                  <CardFooter className="pt-0">
+                  <CardFooter className="p-4 md:p-6 pt-0 md:pt-0">
                     <Link
                       href={service.link}
-                      className="text-[#0052cc] font-medium flex items-center gap-1 group-hover:gap-2 transition-all duration-300"
+                      className="text-[#0052cc] font-medium flex items-center gap-1 group-hover:gap-2 transition-all duration-300 text-sm md:text-base"
                     >
-                      Learn more <ArrowRight className="h-4 w-4" />
+                      Learn more <ArrowRight className="h-3 w-3 md:h-4 md:w-4" />
                     </Link>
                   </CardFooter>
                 </Card>
@@ -617,159 +675,59 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-gradient-to-r from-[#0052cc]/5 to-[#00875a]/5">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <Badge className="bg-gradient-to-r from-[#0052cc]/20 to-[#00875a]/20 text-[#0052cc] border-0 px-4 py-1.5 text-sm font-medium mb-4">
-              Testimonials
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">What Our Clients Say</h2>
-          </motion.div>
-
-          <Tabs defaultValue="tab1" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-8 bg-white/50 p-1 rounded-lg">
-              <TabsTrigger value="tab1" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">
-                WebBuy
-              </TabsTrigger>
-              <TabsTrigger value="tab2" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">
-                FNX-Innov
-              </TabsTrigger>
-              <TabsTrigger value="tab3" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">
-                Business-Accelerated
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="tab1" className="mt-2">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white p-8 rounded-lg shadow-lg border-l-4 border-[#0052cc]"
-              >
-                <p className="text-gray-700 mb-6 italic text-lg">
-                  "One Stop Growth did an excellent job. This project was a large one, and they were able to effectively
-                  communicate with our team to get us to a good resolution point. I appreciate that we were able to
-                  easily integration them into our SCRUM schedule."
-                </p>
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-[#0052cc]/10 rounded-full flex items-center justify-center mr-4">
-                    <Building2 className="w-6 h-6 text-[#0052cc]" />
-                  </div>
-                  <div>
-                    <p className="font-bold text-gray-900">Steve Dimock</p>
-                    <p className="text-gray-500 text-sm">CTO, WebBuy</p>
-                  </div>
-                </div>
-              </motion.div>
-            </TabsContent>
-
-            <TabsContent value="tab2" className="mt-2">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white p-8 rounded-lg shadow-lg border-l-4 border-[#00875a]"
-              >
-                <p className="text-gray-700 mb-6 italic text-lg">
-                  "Working with Michael and his team was a game-changer. They brought AI expertise to enhance the
-                  capabilities of our drone surveying solutions. Their contribution allowed our drones to accurately
-                  identify and analyze sediment deposits within quarry environments, significantly improving the speed
-                  and precision of our valuations. Their professionalism, innovation, and ability to seamlessly
-                  integrate with our technical needs made them an invaluable partner."
-                </p>
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-[#00875a]/10 rounded-full flex items-center justify-center mr-4">
-                    <Building2 className="w-6 h-6 text-[#00875a]" />
-                  </div>
-                  <div>
-                    <p className="font-bold text-gray-900">Jean-Phillipe Lefebvre</p>
-                    <p className="text-gray-500 text-sm">VP - Infrastructures, mobilité et aménagement, FNX-Innov</p>
-                  </div>
-                </div>
-              </motion.div>
-            </TabsContent>
-
-            <TabsContent value="tab3" className="mt-2">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white p-8 rounded-lg shadow-lg border-l-4 border-[#0052cc]"
-              >
-                <p className="text-gray-700 mb-6 italic text-lg">
-                  "One Stop Growth is an excellent organization for professionals who want to elevate their
-                  visibility...they are professional, understood the objective, asked the right questions and delivered.
-                  I recommend One Stop Growth - they are reliable, dependable and consistent."
-                </p>
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-[#0052cc]/10 rounded-full flex items-center justify-center mr-4">
-                    <Building2 className="w-6 h-6 text-[#0052cc]" />
-                  </div>
-                  <div>
-                    <p className="font-bold text-gray-900">Ellen Harris</p>
-                    <p className="text-gray-500 text-sm">CEO/Founder, Business-Accelerated</p>
-                  </div>
-                </div>
-              </motion.div>
-            </TabsContent>
-          </Tabs>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 text-center">
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-3xl mx-auto bg-gradient-to-r from-[#0052cc]/10 to-[#00875a]/10 p-8 rounded-lg shadow-lg"
+            className="max-w-3xl mx-auto bg-gradient-to-r from-[#0052cc]/10 to-[#00875a]/10 p-6 md:p-8 rounded-lg shadow-lg"
           >
-            <h2 className="text-3xl font-bold mb-6 text-gray-900">Stop Managing Chaos. Start Building Systems.</h2>
-            <p className="text-lg mb-8 text-gray-700">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-gray-900">
+              Stop Managing Chaos. Start Building Systems.
+            </h2>
+            <p className="text-base md:text-lg mb-6 md:mb-8 text-gray-700">
               Ready to transform your business with integrated growth systems that actually work?
             </p>
             <Button
               asChild
               size="lg"
-              className="bg-gradient-to-r from-[#0052cc] to-[#00875a] hover:from-[#0052cc]/90 hover:to-[#00875a]/90 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-gradient-to-r from-[#0052cc] to-[#00875a] hover:from-[#0052cc]/90 hover:to-[#00875a]/90 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
             >
               <Link href="/contact" className="flex items-center gap-2">
                 Let's Talk Growth
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
               </Link>
             </Button>
 
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 mt-6 md:mt-8">
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="flex flex-col items-center bg-white p-3 rounded-lg shadow-md"
+                className="flex flex-col items-center bg-white p-3 rounded-lg shadow-md w-full md:w-auto"
               >
-                <p className="text-lg font-medium mb-1">Call Us Directly:</p>
-                <a href="tel:8006741999" className="text-[#0052cc] text-lg font-bold hover:underline">
+                <p className="text-base md:text-lg font-medium mb-1">Call Us Directly:</p>
+                <a href="tel:8006741999" className="text-[#0052cc] text-base md:text-lg font-bold hover:underline">
                   800-674-3599
                 </a>
               </motion.div>
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="flex flex-col items-center bg-white p-3 rounded-lg shadow-md"
+                className="flex flex-col items-center bg-white p-3 rounded-lg shadow-md w-full md:w-auto"
               >
-                <p className="text-lg font-medium mb-1">Email Our Team:</p>
-                <a href="mailto:get@onestopgrowth.com" className="text-[#0052cc] text-lg font-bold hover:underline">
+                <p className="text-base md:text-lg font-medium mb-1">Email Our Team:</p>
+                <a
+                  href="mailto:get@onestopgrowth.com"
+                  className="text-[#0052cc] text-base md:text-lg font-bold hover:underline"
+                >
                   get@onestopgrowth.com
                 </a>
               </motion.div>
             </div>
           </motion.div>
 
-          <div className="mt-12 text-center text-sm text-gray-600">
+          <div className="mt-8 md:mt-12 text-center text-xs md:text-sm text-gray-600">
             <div className="flex justify-center gap-2">
               <Badge variant="outline" className="bg-[#0052cc]/10 text-[#0052cc] border-[#0052cc]/20">
                 DOT: 4279426
