@@ -560,27 +560,14 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="relative aspect-video w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-2xl"
             >
-              <Link href="https://www.freightiqchain.com" target="_blank" rel="noopener noreferrer" className="group">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/FreightIQChain-1rpjytg62tZsShmJXlmiHXKB1aNO4E.png"
-                  alt="FreightIQChain dashboard showing live capacity of verified trucks with real-time location and availability data"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  {/* Enhanced gradient overlay with border and shadow effects */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[#0052cc]/20 to-transparent hover:opacity-0 transition-all duration-300 group-hover:scale-105"></div>
-
-                  {/* Border effect */}
-                  <div className="absolute inset-0 border-2 border-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                  {/* Clickable indicator */}
-                  <div className="bg-white/90 rounded-full p-2 shadow-lg transform scale-0 group-hover:scale-100 transition-transform duration-300 z-10">
-                    <ArrowRight className="h-5 w-5 text-[#0052cc]" />
-                  </div>
-                </div>
-              </Link>
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Freight%20Brokers%20Dashboard-qtKpf4HdKli6uNbpodM9m40AQnondw.png"
+                alt="Truck IQ Chain TMS dashboard showing fleet metrics, load assignments, and available trucks with real-time status updates"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#0052cc]/10 to-transparent hover:opacity-0 transition-opacity duration-300"></div>
             </motion.div>
           </div>
         </div>
