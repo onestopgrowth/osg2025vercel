@@ -358,7 +358,7 @@ export default function Home() {
                       {index % 2 === 1 && (
                         <motion.div
                           initial={{ opacity: 0, x: 20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
+                          whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.8, delay: index * 0.2 }}
                         >
@@ -474,9 +474,9 @@ export default function Home() {
                 color: "border-[#0052cc]",
               },
               {
-                name: "Anthony Matarazzo",
-                title: "Operations Manager",
-                bio: "Anthony oversees dispatch coordination, fleet management, and daily logistics operations. With strong industry knowledge and client service skills, he ensures seamless load execution and operational reliability across all lanes and markets.",
+                name: "Pierre Laguerre",
+                title: "VP of Operations",
+                bio: "Pierre brings over 17 years of hands-on experience in the transportation and logistics industry. His journey from professional driver to founder and operator gives him a rare, full-spectrum perspective on freight operations. Pierre has built and managed fleets, developed staffing solutions, and worked directly with shippers to ensure reliable, efficient service. His deep understanding of DOT compliance, carrier onboarding, and freight visibility makes him a critical asset to One Stop Growth’s mission.",
                 color: "border-[#00875a]",
               },
               {
@@ -560,14 +560,27 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="relative aspect-video w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-2xl"
             >
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Freight%20Brokers%20Dashboard-qtKpf4HdKli6uNbpodM9m40AQnondw.png"
-                alt="Truck IQ Chain TMS dashboard showing fleet metrics, load assignments, and available trucks with real-time status updates"
-                fill
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#0052cc]/10 to-transparent hover:opacity-0 transition-opacity duration-300"></div>
+              <Link href="https://www.freightiqchain.com" target="_blank" rel="noopener noreferrer" className="group">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-06-03%20at%207.39.47%E2%80%AFAM-uonWeoG0c8f0ik7TCOqxUl3EQ9wA6Q.png"
+                  alt="FreightIQChain website hero section with 'Visibility is cool. Meet Verification.' headline and futuristic digital background"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {/* Enhanced gradient overlay with border and shadow effects */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#0052cc]/20 to-transparent hover:opacity-0 transition-all duration-300 group-hover:scale-105"></div>
+
+                  {/* Border effect */}
+                  <div className="absolute inset-0 border-2 border-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                  {/* Clickable indicator */}
+                  <div className="bg-white/90 rounded-full p-2 shadow-lg transform scale-0 group-hover:scale-100 transition-transform duration-300 z-10">
+                    <ArrowRight className="h-5 w-5 text-[#0052cc]" />
+                  </div>
+                </div>
+              </Link>
             </motion.div>
           </div>
         </div>
